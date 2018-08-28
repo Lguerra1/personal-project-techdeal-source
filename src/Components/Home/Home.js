@@ -19,7 +19,7 @@ export default class Home extends Component {
             this.setState({
                 products: res.data
             })
-            console.log(res.data)
+            
         })
     }
     render() {
@@ -33,18 +33,16 @@ export default class Home extends Component {
         })
         return (
             <div>
-                <h1>Home</h1>
-                {productsToDisplay}           
+                <h1>DealSource.Tech</h1>
                 <nav>
                     <ul>
                         <Link to='/audio'><button>Audio</button></Link>
                         <Link to='/displays'><button>Displays</button></Link>
-                        <Link to='/games'><button>Games</button></Link>
-                        <Link to='/misc'><button>Misc</button></Link>
                         <Link to='/parts'><button>PC Parts</button></Link>
                         <Link to='/peripherals'><button>Peripherals</button></Link>
                     </ul>
                 </nav>
+                {productsToDisplay}           
             </div>
         )
     }

@@ -22,6 +22,10 @@ app.get('/api/get_users', users_controller.read)
 
 //-- products endpoints --//
 app.get('/api/get_all_products', products_controller.read)
+app.get(`/api/get_all_displays`, products_controller.readDisplays)
+app.get(`/api/get_all_parts`, products_controller.readParts)
+app.get(`/api/get_all_audio`, products_controller.readAudio)
+app.get(`/api/get_all_peripherals`, products_controller.readPeripherals)
 
 
 

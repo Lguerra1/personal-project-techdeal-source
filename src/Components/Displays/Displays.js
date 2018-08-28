@@ -1,19 +1,55 @@
-import React, {Component} from 'react';
-// import axios from 'axios';
+import React, { Component } from 'react';
+import axios from 'axios';
+import './Display.css';
 
 export default class Display extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            monitors: []
+        }
+    }
 
-        // componentDidMount(){
-        //     axios.get('/api/showitem')
-        // }
-    
-    render(){
+    componentDidMount() {
+        axios.get('/api/get_all_displays').then(res => {
+            this.setState({
+                monitors: res.data
+            })
+            console.log(res.data)
+        })
 
-console.log(this.props);
-        return(
+    }
+
+    render() {
+
+        let monitorsToDisplay = this.state.monitors.map((monitor, i) => {
+            return (
+                <div key={i}>
+                    <h3>{monitor.description}</h3>
+                    <h3> {monitor.price}</h3>
+                    <img width="200" height="200" src={monitor.image_url} alt="" />
+                </div>
+            )
+        })
+
+        return (
             <div>
-              <h1>Displays</h1>
-              <h3>{this.props.match.params.id}</h3>
+                <h1>Displays</h1>
+                <body>
+                    <div>
+                        {monitorsToDisplay}
+                        {monitorsToDisplay}
+                        {monitorsToDisplay}
+                        {monitorsToDisplay}
+                        {monitorsToDisplay}
+                    </div>
+                </body>
+
+
+
+
+
+
             </div>
         )
     }
