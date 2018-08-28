@@ -6,7 +6,7 @@ export default (props) => {
         <Link to={`/displays/${props.product.product_id}`}> <div key={props.product.product_id}>
             <h1>{props.product.product}</h1>
             <h3>{props.product.price}</h3>
-            <img src={props.product.image_url}></img>
+            <img src={props.product.image_url} alt =''></img>
         </div>
         </Link>
     )

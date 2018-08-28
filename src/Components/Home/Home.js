@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import Tile_builder from './Tile_builder';
+import TileBuilder from './TileBuilder';
 
 
 
@@ -26,7 +26,7 @@ export default class Home extends Component {
 
         let productsToDisplay = this.state.products.map((product, i) => {
             return (
-                <Tile_builder
+                <TileBuilder
                 product={product}               
                  />
             )
