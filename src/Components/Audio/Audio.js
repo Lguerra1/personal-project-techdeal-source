@@ -5,7 +5,7 @@ export default class Audio extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            audio: []
+            audio:[]
         }
     }
 
@@ -25,6 +25,7 @@ export default class Audio extends Component {
                     <h3>{audioItem.description}</h3>
                     <h3>{audioItem.price}</h3>
                     <img height="200" width="200" src={audioItem.image_url} alt="" />
+                    <button >Add to cart</button>
                 </div>
 
             )
@@ -33,6 +34,7 @@ export default class Audio extends Component {
             <div>
                 <h1>Audio</h1>
                 {audioToDisplay}
+               
             </div>
         )
     }

@@ -33,13 +33,13 @@ export default class Home extends Component {
         })
         return (
             <div>
-                <h1>DealSource.Tech</h1>
+               
                 <nav>
                     <ul>
-                        <Link to='/audio'><button>Audio</button></Link>
-                        <Link to='/displays'><button>Displays</button></Link>
-                        <Link to='/parts'><button>PC Parts</button></Link>
-                        <Link to='/peripherals'><button>Peripherals</button></Link>
+                        <Link to='/audio'><button className="linkbutton">Audio</button></Link>
+                        <Link to='/displays'><button className="linkbutton">Displays</button></Link>
+                        <Link to='/parts'><button className="linkbutton">PC Parts</button></Link>
+                        <Link to='/peripherals'><button className="linkbutton">Peripherals</button></Link>
                     </ul>
                 </nav>
                 {productsToDisplay}           

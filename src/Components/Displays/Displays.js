@@ -28,6 +28,7 @@ export default class Display extends Component {
                     <h3>{monitor.description}</h3>
                     <h3> {monitor.price}</h3>
                     <img width="200" height="200" src={monitor.image_url} alt="" />
+                    <button>Add to cart</button>
                 </div>
             )
         })

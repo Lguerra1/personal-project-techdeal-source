@@ -26,6 +26,7 @@ export default class Parts extends Component {
                     <h3>{part.description}</h3>
                     <h3>{part.price}</h3>
                     <img height="200" width="200" src={part.image_url} alt="" />
+                    <button>Add to cart</button>
                 </div>
             )
         })
