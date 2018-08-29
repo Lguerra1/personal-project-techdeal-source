@@ -1,1 +1,2 @@
-select * from audio;
+select * from products
+where type = 'Audio';

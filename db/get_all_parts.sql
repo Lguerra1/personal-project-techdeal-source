@@ -1,1 +1,2 @@
-select * from parts;
+select * from products
+where type = 'PC Part';

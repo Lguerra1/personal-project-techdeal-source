@@ -15,6 +15,8 @@ export default (
         <Route path='/parts' component = {Parts}/>
         <Route path='/peripherals' component = {Peripherals}/>
         <Route path='/cart' component = {Cart}/>
+        
+        <Route path='/types/:type' component = {Cart}/>
     </Switch>
 );
 

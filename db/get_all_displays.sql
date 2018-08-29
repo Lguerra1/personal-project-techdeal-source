@@ -1,1 +1,2 @@
-select * from displays;
+select * from products
+where type = 'Displays'

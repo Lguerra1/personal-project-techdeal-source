@@ -1,1 +1,2 @@
-select * from peripherals
+select * from products
+where type = 'Peripherals';

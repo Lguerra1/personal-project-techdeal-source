@@ -9,14 +9,14 @@ export default class Cart extends Component {
             cart: []
         }
     }
-    // componentDidMount() {
-    //     axios.get(`/api/get_cart`).then(res => {
-    //         console.log(res.data)
-    //         this.setState({
-    //             cart: res.data
-    //         })
-    //     })
-    // }
+    componentDidMount() {
+        axios.get(`/api/get_cart`).then(res => {
+
+            this.setState({
+                cart: res.data
+            })
+        })
+    }
 
     render() {
 
@@ -34,6 +34,7 @@ export default class Cart extends Component {
             <div>
                 <h1>Cart</h1>
                 {mappedCart}
+                
             </div>
         )
     }

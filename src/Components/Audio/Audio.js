@@ -19,13 +19,14 @@ class Audio extends Component {
         })
     }
 
+
+
     render() {
-        console.log(this.state.audio)
         let audioToDisplay = this.state.audio.map((audioItem, i) => {
-            console.log(audioItem)
+
             return (
                 <div key={i}>
-                    console.log(this.props.addToCart)
+
                     <h3>{audioItem.description}</h3>
                     <h3>{audioItem.price}</h3>
                     <img height="200" width="200" src={audioItem.image_url} alt="" />
@@ -43,5 +44,11 @@ class Audio extends Component {
         )
     }
 }
+function mapStateToProps(state) {
+    const { product_id } = state;
+    return {
+        product_id
+    }
+}
 
-export default connect(state => state, { addToCart })(Audio);
+export default connect(mapStateToProps, { addToCart })(Audio);
