@@ -5,6 +5,7 @@ import Displays from './Components/Displays/Displays';
 import Parts from './Components/Parts/Parts';
 import Peripherals from './Components/Peripherals/Peripherals';
 import Home from './Components/Home/Home';
+import Cart from './Components/Cart/Cart';
 
 export default (
     <Switch>
@@ -13,6 +14,7 @@ export default (
         <Route path='/displays' component = {Displays}/>        
         <Route path='/parts' component = {Parts}/>
         <Route path='/peripherals' component = {Peripherals}/>
+        <Route path='/cart' component = {Cart}/>
     </Switch>
 );
 

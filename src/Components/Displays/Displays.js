@@ -45,12 +45,6 @@ export default class Display extends Component {
                         {monitorsToDisplay}
                     </div>
                 </body>
-
-
-
-
-
-
             </div>
         )
     }

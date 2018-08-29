@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const users_controller = require('./controllers/users_controller');
 const products_controller = require('./controllers/products_controller');
+const cart_controller = require('./controllers/cart_controller');
 
 const app = express();
 app.use(bodyParser.json());
@@ -26,6 +27,9 @@ app.get(`/api/get_all_displays`, products_controller.readDisplays)
 app.get(`/api/get_all_parts`, products_controller.readParts)
 app.get(`/api/get_all_audio`, products_controller.readAudio)
 app.get(`/api/get_all_peripherals`, products_controller.readPeripherals)
+
+//--cart endpoints --//
+app.get(`/api/get_cart/`, cart_controller.getCartItems)
 
 
 
