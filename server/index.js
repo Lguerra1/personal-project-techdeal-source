@@ -11,11 +11,68 @@ const cart_controller = require('./controllers/cart_controller');
 const app = express();
 app.use(bodyParser.json());
 
+const {
+    REACT_APP_CLIENT_ID, REACT_APP_DOMAIN, CLIENT_SECRET
+} = process.env
+
+massive(process.env.CONNECTION_STRING).then(db => {
+    app.set('db', db);
+})
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }));
+
+//--------------Auth0 and Endpoints------------------//
+
+app.get('/auth/callback', async (req, res) => {
+    const payload = {
+        client_id: REACT_APP_CLIENT_ID,
+        client_secret: CLIENT_SECRET,
+        code: req.query.code,
+        grant_type: 'authorization_code',
+        redirect_uri: `http://${req.headers.host}/auth/callback`
+    }
+
+    //trading code for token
+    let resWithToken = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload);
+    // use token to get user data
+    let resWithUserData = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${resWithToken.data.access_token}`);
+
+    let {
+        email,
+        name,
+        picture,
+        sub
+    }=resWithUserData.data;
+
+        let db = req.app.get('db')
+    let foundUser = await db.find_user([name, email, picture, sub])
+    if (foundUser[0]) {
+        req.session.user = foundUser[0];
+        res.redirect(`/#/`)
+    } else {
+        let createdUser = await db.create_user([name, email, picture, sub])
+        req.session.user = createdUser[0];
+        res.redirect('/#/');
+      }
+})
+
+app.get(`/api/user_data`, (req, res) => {
+    if(req.session.user) {
+        res.status(200).send(req.session.user);
+    } else {
+        res.status(401).send('Nope nope nope')
+    }
+})
+
+app.get(`/auth/logout`, (req, res) => {
+    req.session.destroy();
+    res.redirect(`http://localhost:3000`)
+})
+
 
 //--- users endpoints --//
 app.get('/api/get_users', users_controller.read)
@@ -36,9 +93,6 @@ app.delete(`/api/delete_item`, cart_controller.deleteItem)
 
 
 
-massive(process.env.CONNECTION_STRING).then(db => {
-    app.set('db', db);
-})
 
 const PORT = process.env.SERVER_PORT || 3010
 app.listen(PORT, () => { console.log(`Listening on Port ${PORT}`) });

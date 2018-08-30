@@ -4,13 +4,14 @@ body {
   font-family: sans-serif;
 }
 
+
 .parts {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: space-around;  
   align-items: center;
   align-content: center;
+  flex-wrap: wrap;
 }
 
 .cart {
@@ -20,12 +21,13 @@ body {
 
 .linkbutton {
   -webkit-transition-duration: 0.4s;
-  transition-duration: 0.4s;
+  transition-duration: .5s;
   border-radius: 0px;
   font-size: 20px;
   font-weight: bolder;
+  
 
-  background-color: white;
+  background-color: rgb(255, 255, 255);
     color: black;
     border: 2px solid black;
     padding: 16px 24px;
@@ -37,3 +39,23 @@ body {
   color: white;
 }
 
+
+.loginbutton {
+  -webkit-transition-duration: 0.4s;
+  transition-duration: .5s;
+  border-radius: 0px;
+  font-size: 15px;
+  font-weight: bolder;
+  float: left;
+
+  background-color: rgb(255, 255, 255);
+    color: black;
+    border: 2px solid black;
+    padding: 10px 15px;
+    margin: 1px;  
+}
+
+.loginbutton:hover {
+  background-color: #212121;
+  color: white;
+}

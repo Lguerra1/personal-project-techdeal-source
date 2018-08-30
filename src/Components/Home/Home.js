@@ -15,11 +15,11 @@ export default class Home extends Component {
 
 
     componentDidMount() {
-        axios.get('/api/get_all_products').then(res => {            
+        axios.get('/api/get_all_products').then(res => {
             this.setState({
                 products: res.data
             })
-            
+
         })
     }
     render() {
@@ -27,26 +27,30 @@ export default class Home extends Component {
         let productsToDisplay = this.state.products.map((product, i) => {
             return (
                 <TileBuilder
-                product={product}               
-                 />
+                    product={product}
+                />
             )
         })
         return (
             <div>
-               
+
+                  
+
                 <nav>
                     <ul>
                         <Link to='/audio'><button className="linkbutton">Audio</button></Link>
                         <Link to='/displays'><button className="linkbutton">Displays</button></Link>
                         <Link to='/parts'><button className="linkbutton">PC Parts</button></Link>
-                        <Link to='/peripherals'><button className="linkbutton">Peripherals</button></Link>                        
+                        <Link to='/peripherals'><button className="linkbutton">Peripherals</button></Link>
                         <Link to='/cart'><button className="linkbutton">Cart</button></Link>
                     </ul>
                 </nav>
-                <div className='parts'>
-                    {productsToDisplay}  
-                </div>
-                     
+                <section>
+                    <div className='parts'>
+                        {productsToDisplay}
+                    </div>
+                </section>
+                 
             </div>
         )
     }
