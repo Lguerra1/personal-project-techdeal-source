@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {connect} from 'react-redux';
+import {addToCart} from '../../ducks/reducer';
 
-export default class Peripherals extends Component {
+class Peripherals extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -24,7 +26,7 @@ export default class Peripherals extends Component {
                 <h3>{periph.description}</h3>
                 <h3>{periph.price}</h3>
                 <img height="200" widht="200" src={periph.image_url}/>
-                <button>Add to cart</button>
+                <button onClick={this.props.addToCart(periph.product_id)}>Add to cart</button>
                 </div>
             )
         })
@@ -36,3 +38,12 @@ export default class Peripherals extends Component {
         )
     }
 }
+
+function mapStateToProps(state){
+    const {product_id}=state
+        return{
+            product_id
+        }
+}
+
+export default connect (mapStateToProps, {addToCart})(Peripherals)

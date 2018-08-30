@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Display.css';
+import {connect} from 'react-redux';
+import {addToCart} from '../../ducks/reducer';
 
-export default class Display extends Component {
+class Display extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -28,7 +30,7 @@ export default class Display extends Component {
                     <h3>{monitor.description}</h3>
                     <h3> {monitor.price}</h3>
                     <img width="300" height="300" src={monitor.image_url} alt="" />
-                    <button>Add to cart</button>
+                    <button onClick={() => this.props.addToCart(monitor.product_id)}>Add to cart</button>
                 </div>
             )
         })
@@ -50,3 +52,15 @@ export default class Display extends Component {
         )
     }
 }
+
+function mapStateToProps(state){
+    const {product_id} = state
+    
+    return {
+        product_id
+    }
+         
+
+}
+
+export default connect(mapStateToProps, {addToCart})(Display)
