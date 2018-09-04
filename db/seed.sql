@@ -63,7 +63,7 @@ add displays
 add parts
 
 -- insert into products
--- (product, price, description, image_url)
+-- (product, price, description, image_url, type)
 -- values
 -- ('SSD', 90.00, 'WD Blue 3D NAND 500GB PC SSD','https://static1.squarespace.com/static/576bf6f9197aeaf55ed0447d/5993522615d5db0803c090ac/5b805c3940ec9a19793b4cb1/1535405257911/20-250-091-V01.jpg?format=750w', 'Parts' )
 
@@ -72,11 +72,10 @@ add parts
 
 add audio
 
-
 -- insert into products
--- (product, price, description, image_url)
+-- (product, price, description, image_url, type)
 -- values
--- ('Headset', 83.00, 'Corsair Void Pro RGB Gaming Headset','https://static1.squarespace.com/static/576bf6f9197aeaf55ed0447d/5998cdd3be42d6f75f9a99ed/5b819558032be4d68a3e9864/1535406751024/71bjw0621xL._SL1500_.jpg?format=500w', 'Audio' )
+-- ('Headset', 128.08, 'SteelSeries Arctis 7 Lag-Free Wireless Gaming Headset.','https://images-na.ssl-images-amazon.com/images/I/61wMnQhL5cL._SL1328_.jpg', 'Audio' )
 
 -----------------------------------------
 

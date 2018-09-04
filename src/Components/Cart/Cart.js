@@ -18,7 +18,7 @@ class Cart extends Component {
                 <div key={i}>
                     <h5>Descritpion: {cartItem.description} </h5>                    
                     <h5> Price: {cartItem.price}</h5>
-                    <img height='50px' width='50px' src={cartItem.image_url} />
+                    <img height='50px' width='50px' src={cartItem.image_url} alt='' />
                     <div><button onClick={() => this.props.removeFromCart(cartItem)}>Remove Item</button></div>
                 </div>
             )

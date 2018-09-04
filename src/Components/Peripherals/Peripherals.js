@@ -25,7 +25,7 @@ class Peripherals extends Component {
                 <div key={i}>
                 <h3>{periph.description}</h3>
                 <h3>{periph.price}</h3>
-                <img height="200" widht="200" src={periph.image_url}/>
+                <img height="200" widht="200" src={periph.image_url} alt=''/>
                 <button onClick={this.props.addToCart(periph)}>Add to cart</button>
                 </div>
             )

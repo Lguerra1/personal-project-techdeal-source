@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const {
-    REACT_APP_CLIENT_ID, REACT_APP_DOMAIN, CLIENT_SECRET
+    REACT_APP_CLIENT_ID, REACT_APP_DOMAIN, CLIENT_SECRET, SESSION_SECRET
 } = process.env
 
 massive(process.env.CONNECTION_STRING).then(db => {
@@ -25,7 +25,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
-//--------------Auth0 and Endpoints------------------//
+//-------------- Auth0 -----------------//
 
 app.get('/auth/callback', async (req, res) => {
     const payload = {
