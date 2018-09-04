@@ -62,7 +62,7 @@ add displays
 
 add parts
 
--- insert into parts
+-- insert into products
 -- (product, price, description, image_url)
 -- values
 -- ('SSD', 90.00, 'WD Blue 3D NAND 500GB PC SSD','https://static1.squarespace.com/static/576bf6f9197aeaf55ed0447d/5993522615d5db0803c090ac/5b805c3940ec9a19793b4cb1/1535405257911/20-250-091-V01.jpg?format=750w', 'Parts' )
@@ -86,5 +86,5 @@ add peripherals
 -- insert into products
 -- (product, price, description, image_url, type)
 -- values
--- ('Keyboard',210.00 ,'','https://static1.squarespace.com/static/576bf6f9197aeaf55ed0447d/584b95c3ebbd1a316fc2abb8/5b7f18af2b6a288e3a861918/1535056310087/71ckZpSdunL._SL1500_.jpg?format=750w', 'Peripherals' )
+-- ('Keyboard',210.00 ,'CORSAIR K95 RGB PLATINUM Mechanical Gaming Keyboard','https://static1.squarespace.com/static/576bf6f9197aeaf55ed0447d/584b95c3ebbd1a316fc2abb8/5b7f18af2b6a288e3a861918/1535056310087/71ckZpSdunL._SL1500_.jpg?format=750w', 'Peripherals' )
 

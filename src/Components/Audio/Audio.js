@@ -30,7 +30,7 @@ class Audio extends Component {
                     <h3>{audioItem.description}</h3>
                     <h3>{audioItem.price}</h3>
                     <img height="200" width="200" src={audioItem.image_url} alt="" />
-                    <button onClick={() => this.props.addToCart(audioItem.product_id)} >Add to cart</button>
+                    <button onClick={() => this.props.addToCart(audioItem)} >Add to cart</button>
                 </div>
 
             )

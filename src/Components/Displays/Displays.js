@@ -30,7 +30,7 @@ class Display extends Component {
                     <h3>{monitor.description}</h3>
                     <h3> {monitor.price}</h3>
                     <img width="300" height="300" src={monitor.image_url} alt="" />
-                    <button onClick={() => this.props.addToCart(monitor.product_id)}>Add to cart</button>
+                    <button onClick={() => this.props.addToCart(monitor)}>Add to cart</button>
                 </div>
             )
         })
