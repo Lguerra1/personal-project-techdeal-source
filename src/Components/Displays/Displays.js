@@ -17,8 +17,7 @@ class Display extends Component {
         axios.get('/api/get_all_displays').then(res => {
             this.setState({
                 monitors: res.data
-            })
-            console.log(res.data)
+            })            
         })
 
     }
@@ -28,11 +27,11 @@ class Display extends Component {
         let monitorsToDisplay = this.state.monitors.map((monitor, i) => {
             return (
                 <div key={i}>
-                    <h4>{monitor.description}</h4>
-                    <h4> {monitor.price}</h4>
+                    <h4>Description: {monitor.description}</h4>
+                    <h4>Price:  {monitor.price}</h4>
                     <img width="150" height="150" src={monitor.image_url} alt="" />
                     <div></div>
-                    <button onClick={() => this.props.addToCart(monitor)}>Add to cart</button>
+                    <button className='addCart' onClick={() => this.props.addToCart(monitor)}>Add to cart</button>
                 </div>
             )
         })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removeFromCart} from '../../ducks/reducer';
+import { removeFromCart } from '../../ducks/reducer';
 import './Cart.css';
 
 
@@ -16,7 +16,7 @@ class Cart extends Component {
         let mappedCart = this.props.cart.map((cartItem, i) => {
             return (
                 <div key={i}>
-                    <h4>Descritpion: {cartItem.description} </h4>                    
+                    <h4>Descritpion: {cartItem.description} </h4>
                     <h4> Price: {cartItem.price}</h4>
                     <img height='100px' width='100px' src={cartItem.image_url} alt='' />
                     <div><button onClick={() => this.props.removeFromCart(cartItem)}>Remove Item</button></div>
@@ -25,17 +25,19 @@ class Cart extends Component {
         })
         return (
             <div>
-                <h1>Shopping Cart</h1>
+                <h1>Cart</h1>
                 <body>
-            
+
                     <section>
                         <div className='flexMonitors'>
-                           {mappedCart}
+                            <div className='cartContainer'>
+                                {mappedCart}
+                            </div>
                         </div>
                     </section>
                 </body>
 
-                <button>Checkout</button>
+                         
             </div>
 
         )

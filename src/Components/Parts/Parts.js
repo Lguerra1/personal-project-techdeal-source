@@ -27,11 +27,11 @@ class Parts extends Component {
         let partsToDisplay = this.state.parts.map((part, i) => {
             return (
                 <div key={i}>
-                    <h4>{part.description}</h4>
-                    <h4>{part.price}</h4>
+                    <h4>Description: {part.description}</h4>
+                    <h4>Price: {part.price}</h4>
                     <img height="150" width="150" src={part.image_url} alt="" />
                     <div></div>
-                    <button onClick={() => this.props.addToCart(part)}>Add to cart</button>
+                    <button className='addCart' onClick={() => this.props.addToCart(part)}>Add to cart</button>
                 </div>
             )
         })

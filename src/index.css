@@ -4,6 +4,10 @@ body {
   font-family: sans-serif;
 }
 
+.imageLink {
+  margin: auto;
+}
+
 
 .container {
   display: grid;
@@ -70,4 +74,8 @@ body {
 .loginbutton:hover {
   background-color: #212121;
   color: white;
+}
+
+.checkOut {
+  
 }

@@ -24,10 +24,11 @@ class Peripherals extends Component {
         let peripheralsToDisplay = this.state.peripherals.map((periph, i) => {
             return (
                 <div key={i}>
-                    <h4>{periph.description}</h4>
-                    <h4>{periph.price}</h4>
+                    <h4>Description: {periph.description}</h4>
+                    <h4>Price: {periph.price}</h4>
                     <img height="150" widht="150" src={periph.image_url} alt='' />
-                    <button onClick={() => this.props.addToCart(periph)}>Add to cart</button>
+                    <div></div>
+                    <button className='addCart' onClick={() => this.props.addToCart(periph)}>Add to cart</button>
                 </div>
             )
         })

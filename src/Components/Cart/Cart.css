@@ -5,5 +5,13 @@
     align-items: center;
     align-content: center;
     flex-wrap: wrap;
+    
+    
+}
+
+.cartContainer {
+    height: 10%;
+    width: 25%;
+    
 }
 

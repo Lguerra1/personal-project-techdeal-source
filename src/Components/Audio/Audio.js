@@ -31,9 +31,9 @@ class Audio extends Component {
 
                     <h4>Description: {audioItem.description}</h4>
                     <h4>Price: {audioItem.price}</h4>
-                    <img height="150" width="150" src={audioItem.image_url} alt="" />                    
+                    <img height="150" width="150" src={audioItem.image_url} alt="" />
                     <div>
-                    <button className='addCart' onClick={() => this.props.addToCart(audioItem)} >Add to cart</button>
+                        <button className='addCart' onClick={() => this.props.addToCart(audioItem)} >Add to cart</button>
                     </div>
                 </div>
 
@@ -42,20 +42,11 @@ class Audio extends Component {
         return (
             <div>
                 <h1>Audio</h1>
-                
-
-                 <div class="container">
-                    <div class="item">{audioToDisplay}</div>                                                     
+                <div class="container">
+                    <div class="item">{audioToDisplay}</div>
                     <div class="item">{audioToDisplay}</div>
                     <div class="item">{audioToDisplay}</div>
                 </div>
-
-
-
-
-
-                
-
             </div>
         )
     }
