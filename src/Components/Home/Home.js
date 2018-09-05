@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import TileBuilder from './TileBuilder';
+import '../../index.css';
 
 
 
@@ -45,11 +46,12 @@ export default class Home extends Component {
                         <Link to='/cart'><button className="linkbutton">Cart</button></Link>
                     </ul>
                 </nav>
-                <section>
-                    <div className='parts'>
-                        {productsToDisplay}
-                    </div>
-                </section>
+                
+                <div class="container">
+                    <div class="item">{productsToDisplay}</div>                                                     
+                    <div class="item">{productsToDisplay}</div>
+                    <div class="item">{productsToDisplay}</div>
+                </div>
                  
             </div>
         )

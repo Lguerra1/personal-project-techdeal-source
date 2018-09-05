@@ -1,0 +1,50 @@
+  .container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    
+    grid-column-gap: 10px;
+    grid-row-gap: 25px;
+    
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+.item {
+    background-color: white;    
+    padding: 40px;
+    font-size: 15px;
+    font-weight: bolder;
+    text-align: center;
+    
+}
+
+.addCart {
+    background-color: darkgray;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.addCart:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: #212121;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    -webkit-transition-duration: 1.0s;
+    transition-duration: 1.0s;
+}

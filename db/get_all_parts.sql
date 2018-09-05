@@ -1,2 +1,4 @@
-select * from products
-where type = 'PC Part';
+select * 
+from products
+where type
+in ('Parts', 'PC Part');

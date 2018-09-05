@@ -24,7 +24,7 @@ export default function reducer(state = initialState, action) {
 }
 
 export function addToCart(product_id) {
-    console.log(product_id)
+    
     return {
         type: ADD_TO_CART,
         payload: product_id

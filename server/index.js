@@ -7,6 +7,7 @@ const session = require('express-session');
 const users_controller = require('./controllers/users_controller');
 const products_controller = require('./controllers/products_controller');
 const cart_controller = require('./controllers/cart_controller');
+const check = require('./middlewares/checkForSessions');
 
 const app = express();
 app.use(bodyParser.json());
@@ -24,6 +25,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+app.use(check);
 
 //-------------- Auth0 -----------------//
 
@@ -46,9 +48,9 @@ app.get('/auth/callback', async (req, res) => {
         name,
         picture,
         sub
-    }=resWithUserData.data;
+    } = resWithUserData.data;
 
-        let db = req.app.get('db')
+    let db = req.app.get('db')
     let foundUser = await db.find_user([name, email, picture, sub])
     if (foundUser[0]) {
         req.session.user = foundUser[0];
@@ -57,11 +59,11 @@ app.get('/auth/callback', async (req, res) => {
         let createdUser = await db.create_user([name, email, picture, sub])
         req.session.user = createdUser[0];
         res.redirect('/#/');
-      }
+    }
 })
 
 app.get(`/api/user_data`, (req, res) => {
-    if(req.session.user) {
+    if (req.session.user) {
         res.status(200).send(req.session.user);
     } else {
         res.status(401).send('Nope nope nope')

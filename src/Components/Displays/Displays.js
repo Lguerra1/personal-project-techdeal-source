@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Display.css';
-import {connect} from 'react-redux';
-import {addToCart} from '../../ducks/reducer';
+import { connect } from 'react-redux';
+import { addToCart } from '../../ducks/reducer';
+import './Display.css';
 
 class Display extends Component {
     constructor(props) {
@@ -27,9 +28,10 @@ class Display extends Component {
         let monitorsToDisplay = this.state.monitors.map((monitor, i) => {
             return (
                 <div key={i}>
-                    <h3>{monitor.description}</h3>
-                    <h3> {monitor.price}</h3>
-                    <img width="300" height="300" src={monitor.image_url} alt="" />
+                    <h4>{monitor.description}</h4>
+                    <h4> {monitor.price}</h4>
+                    <img width="150" height="150" src={monitor.image_url} alt="" />
+                    <div></div>
                     <button onClick={() => this.props.addToCart(monitor)}>Add to cart</button>
                 </div>
             )
@@ -38,29 +40,24 @@ class Display extends Component {
         return (
             <div>
                 <h1>Displays</h1>
-                <body>
-                    <div className='flexMonitors'>
-                        <div>{monitorsToDisplay}</div>
-                        <div>{monitorsToDisplay}</div>
-                        <div>{monitorsToDisplay}</div>
-                        <div>{monitorsToDisplay}</div>
-                        <div>{monitorsToDisplay}</div>
-                        
-                    </div>
-                </body>
+                <div class="container">
+                    <div class="item">{monitorsToDisplay}</div>                                                     
+                    <div class="item">{monitorsToDisplay}</div>
+                    <div class="item">{monitorsToDisplay}</div>
+                </div>
             </div>
         )
     }
 }
 
-function mapStateToProps(state){
-    const {product_id} = state
-    
+function mapStateToProps(state) {
+    const { product_id } = state
+
     return {
         product_id
     }
-         
+
 
 }
 
-export default connect(mapStateToProps, {addToCart})(Display)
+export default connect(mapStateToProps, { addToCart })(Display)

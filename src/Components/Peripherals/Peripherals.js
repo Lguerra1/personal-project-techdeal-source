@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux';
-import {addToCart} from '../../ducks/reducer';
+import { connect } from 'react-redux';
+import { addToCart } from '../../ducks/reducer';
+import './Peripherals';
 
 class Peripherals extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             peripherals: []
@@ -12,38 +13,43 @@ class Peripherals extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/get_all_peripherals`).then( res => {
+        axios.get(`/api/get_all_peripherals`).then(res => {
             this.setState({
                 peripherals: res.data
             })
         })
     }
-    render(){
+    render() {
 
         let peripheralsToDisplay = this.state.peripherals.map((periph, i) => {
             return (
                 <div key={i}>
-                <h3>{periph.description}</h3>
-                <h3>{periph.price}</h3>
-                <img height="200" widht="200" src={periph.image_url} alt=''/>
-                <button onClick={this.props.addToCart(periph)}>Add to cart</button>
+                    <h4>{periph.description}</h4>
+                    <h4>{periph.price}</h4>
+                    <img height="150" widht="150" src={periph.image_url} alt='' />
+                    <button onClick={() => this.props.addToCart(periph)}>Add to cart</button>
                 </div>
             )
         })
-        return(
+        return (
             <div>
-              <h1>Peripherals</h1>
-              {peripheralsToDisplay}
+                <h1>Peripherals</h1>
+                <div class="container">
+                    <div class="item">{peripheralsToDisplay}</div>                                                     
+                    <div class="item">{peripheralsToDisplay}</div>
+                    <div class="item">{peripheralsToDisplay}</div>
+                </div>
+
             </div>
         )
     }
 }
 
-function mapStateToProps(state){
-    const {product_id}=state
-        return{
-            product_id
-        }
+function mapStateToProps(state) {
+    const { product_id } = state
+    return {
+        product_id
+    }
 }
 
-export default connect (mapStateToProps, {addToCart})(Peripherals)
+export default connect(mapStateToProps, { addToCart })(Peripherals)

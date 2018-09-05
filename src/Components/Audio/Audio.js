@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { addToCart } from '../../ducks/reducer';
+import './Audio.css';
+
 
 class Audio extends Component {
     constructor(props) {
@@ -27,10 +29,12 @@ class Audio extends Component {
             return (
                 <div key={i}>
 
-                    <h3>{audioItem.description}</h3>
-                    <h3>{audioItem.price}</h3>
-                    <img height="200" width="200" src={audioItem.image_url} alt="" />
-                    <button onClick={() => this.props.addToCart(audioItem)} >Add to cart</button>
+                    <h4>Description: {audioItem.description}</h4>
+                    <h4>Price: {audioItem.price}</h4>
+                    <img height="150" width="150" src={audioItem.image_url} alt="" />                    
+                    <div>
+                    <button className='addCart' onClick={() => this.props.addToCart(audioItem)} >Add to cart</button>
+                    </div>
                 </div>
 
             )
@@ -38,7 +42,20 @@ class Audio extends Component {
         return (
             <div>
                 <h1>Audio</h1>
-                {audioToDisplay}
+                
+
+                 <div class="container">
+                    <div class="item">{audioToDisplay}</div>                                                     
+                    <div class="item">{audioToDisplay}</div>
+                    <div class="item">{audioToDisplay}</div>
+                </div>
+
+
+
+
+
+                
+
             </div>
         )
     }
