@@ -24,7 +24,7 @@ class App extends Component {
         {routes}
 
 
-         <Link to='/cart'><button className="addCart">Purchase</button></Link>
+         
 
       </div>
     );

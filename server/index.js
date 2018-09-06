@@ -54,6 +54,18 @@ app.get('/auth/callback', async (req, res) => {
     let foundUser = await db.find_user([name, email, picture, sub])
     if (foundUser[0]) {
         req.session.user = foundUser[0];
+        //----- read through this!!
+        db.find_user_cart(req.session.user.user_id).then(userCart => {
+            if( !userCart[0] ){ 
+                db.create_cart(req.session.user.user_id).then(createdCart => {
+                    req.session.user.cart_id = createdCart[0].cart_id
+                })
+            } else {
+                req.session.user.cart_id = userCart[0].cart_id
+            }
+
+            //------------------------
+        })
         res.redirect(`/#/`)
     } else {
         let createdUser = await db.create_user([name, email, picture, sub])
