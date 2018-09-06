@@ -18,23 +18,8 @@ class Cart extends Component {
         }
     }
 
-    componentDidMount() {
-        axios.get(`/api/get_all_products`).then(res => {
-            console.log(res.data)
-            this.setState({
-                price: res.data
-            })
-        })
-    }
-
 
     render() {
-
-        let mappedPrice = this.state.price.map((productPrice, i) => {
-            return (
-                <div key={i}>{productPrice.product_id} </div>
-            )
-        })
 
 
         let mappedCart = this.props.cart.map((cartItem, i) => {
@@ -60,12 +45,6 @@ class Cart extends Component {
                         </div>
                     </section>
                 </body>
-
-
-                <h3>Total: {mappedPrice}</h3>
-                <button className="addCart" onClick={() => this.props.purchaseCart()}>Purchase</button>
-
-
             </div>
 
         )

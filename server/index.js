@@ -7,7 +7,7 @@ const session = require('express-session');
 const users_controller = require('./controllers/users_controller');
 const products_controller = require('./controllers/products_controller');
 const cart_controller = require('./controllers/cart_controller');
-const check = require('./middlewares/checkForSessions');
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -25,7 +25,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
-app.use(check);
 
 //-------------- Auth0 -----------------//
 
@@ -63,7 +62,6 @@ app.get('/auth/callback', async (req, res) => {
             } else {
                 req.session.user.cart_id = userCart[0].cart_id
             }
-
             //------------------------
         })
         res.redirect(`/#/`)
@@ -89,7 +87,7 @@ app.get(`/auth/logout`, (req, res) => {
 
 
 //--- users endpoints --//
-app.get('/api/get_users', users_controller.read)
+
 
 
 //-- products endpoints --//
