@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 const initialState = {
     cart: [],
     totalCost: 0,
@@ -28,7 +30,9 @@ export function addToCart(product_id) {
 
     return {
         type: ADD_TO_CART,
-        payload: product_id
+        payload: axios.post(`/api/add_to_cart`).then(res => {
+            res.data})
+        // payload: product_id
 
     }
 }
@@ -37,7 +41,9 @@ export function removeFromCart(product_id) {
     // console.log(product_id)
     return {
         type: REMOVE_FROM_CART,
-        payload: product_id
+        paload: axios.delete(`/api/delete_item`).then(res => {
+            res.data})
+        // payload: product_id
     }
 }
 

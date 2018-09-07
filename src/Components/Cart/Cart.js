@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { removeFromCart } from '../../ducks/reducer';
-import axios from 'axios';
 import './Cart.css';
 
 

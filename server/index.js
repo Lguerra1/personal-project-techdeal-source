@@ -73,21 +73,6 @@ app.get('/auth/callback', async (req, res) => {
             console.log(req.session.user)
         }
     })
-
-
-
-    //     //----- read through this!!
-    //     db.find_user_cart(req.session.user.user_id).then(userCart => {
-    //         if (!userCart[0]) {
-    //             db.create_cart(req.session.user.user_id).then(createdCart => {
-    //                 req.session.user.cart_id = createdCart[0].cart_id
-    //             })
-    //         } else {
-    //             req.session.user.cart_id = userCart[0].cart_id
-    //         }
-    //     })
-
-    //     //------------------------
 })
 
 app.get(`/api/user_data`, (req, res) => {
