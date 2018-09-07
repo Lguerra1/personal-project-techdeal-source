@@ -21,7 +21,11 @@ class Audio extends Component {
         })
     }
 
+    addToCart(){
 
+    }
+
+    
 
     render() {
         let audioToDisplay = this.state.audio.map((audioItem, i) => {
