@@ -62,14 +62,14 @@ app.get('/auth/callback', async (req, res) => {
         if (!user_cart[0]) {
             db.new_order(req.session.user.user_id).then(new_order => {
                 req.session.user.order = new_order[0].id
-                res.redirect('/#/');
+                res.redirect('/#/cart');
 
                 console.log(req.session.user)
             })
 
         } else {
             req.session.user.order = user_cart[0].id
-            res.redirect('/#/');
+            res.redirect('/#/cart');
             console.log(req.session.user)
         }
     })
@@ -101,7 +101,7 @@ app.get(`/api/get_all_audio`, products_controller.readAudio)
 app.get(`/api/get_all_peripherals`, products_controller.readPeripherals)
 
 //--cart endpoints --//
-app.get(`/api/get_cart/`, cart_controller.getCartItems)
+// app.get(`/api/get_order/`, cart_controller.getCartItems)
 app.post(`/api/add_to_cart`, cart_controller.addToCart)
 app.delete(`/api/delete_item`, cart_controller.deleteItem)
 

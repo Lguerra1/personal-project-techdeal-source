@@ -27,7 +27,7 @@ export default class Home extends Component {
 
         let productsToDisplay = this.state.products.map((product, i) => {
             return (
-                <TileBuilder
+                <TileBuilder key={i}
                     product={product}
                 />
             )
@@ -47,10 +47,10 @@ export default class Home extends Component {
                     </ul>
                 </nav>
                 
-                <div class="container">
-                    <div class="item">{productsToDisplay}</div>                                                     
-                    <div class="item">{productsToDisplay}</div>
-                    <div class="item">{productsToDisplay}</div>
+                <div className="container">
+                    <div className="item">{productsToDisplay}</div>                                                     
+                    <div className="item">{productsToDisplay}</div>
+                    <div className="item">{productsToDisplay}</div>
                 </div>
                  
             </div>

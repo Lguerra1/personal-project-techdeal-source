@@ -21,11 +21,7 @@ class Audio extends Component {
         })
     }
 
-//   axios.post(``).then(res => {
-//       this.setState({})
-//   })
 
-    
 
     render() {
         let audioToDisplay = this.state.audio.map((audioItem, i) => {
@@ -46,10 +42,11 @@ class Audio extends Component {
         return (
             <div>
                 <h1>Audio</h1>
-                <div class="container">
-                    <div class="item">{audioToDisplay}</div>
-                    <div class="item">{audioToDisplay}</div>
-                    <div class="item">{audioToDisplay}</div>
+
+                <div className="container">
+                    <div className="item">{audioToDisplay}</div>
+                    <div className="item">{audioToDisplay}</div>
+                    <div className="item">{audioToDisplay}</div>
                 </div>
             </div>
         )

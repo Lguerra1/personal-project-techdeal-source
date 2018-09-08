@@ -35,10 +35,10 @@ class Peripherals extends Component {
         return (
             <div>
                 <h1>Peripherals</h1>
-                <div class="container">
-                    <div class="item">{peripheralsToDisplay}</div>                                                     
-                    <div class="item">{peripheralsToDisplay}</div>
-                    <div class="item">{peripheralsToDisplay}</div>
+                <div className="container">
+                    <div className="item">{peripheralsToDisplay}</div>                                                     
+                    <div className="item">{peripheralsToDisplay}</div>
+                    <div className="item">{peripheralsToDisplay}</div>
                 </div>
 
             </div>

@@ -38,10 +38,10 @@ class Parts extends Component {
         return (
             <div>
                 <h1>PC Parts</h1>
-                <div class="container">
-                    <div class="item">{partsToDisplay}</div>                                                     
-                    <div class="item">{partsToDisplay}</div>
-                    <div class="item">{partsToDisplay}</div>
+                <div className="container">
+                    <div className="item">{partsToDisplay}</div>                                                     
+                    <div className="item">{partsToDisplay}</div>
+                    <div className="item">{partsToDisplay}</div>
                 </div>
 
             </div>

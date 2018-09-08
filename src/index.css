@@ -2,13 +2,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+ 
 }
 
 .imageLink {
   margin: auto;
 }
 
-
+/* 
 .container {
   display: grid;
   grid-template-columns: auto auto auto auto;
@@ -28,7 +29,7 @@ body {
   font-weight: bolder;
   text-align: center;
   
-}
+} */
 
 .cart {
   float: right;
@@ -76,6 +77,3 @@ body {
   color: white;
 }
 
-.checkOut {
-  
-}

@@ -39,10 +39,10 @@ class Display extends Component {
         return (
             <div>
                 <h1>Displays</h1>
-                <div class="container">
-                    <div class="item">{monitorsToDisplay}</div>                                                     
-                    <div class="item">{monitorsToDisplay}</div>
-                    <div class="item">{monitorsToDisplay}</div>
+                <div className="container">
+                    <div className="item">{monitorsToDisplay}</div>                                                     
+                    <div className="item">{monitorsToDisplay}</div>
+                    <div className="item">{monitorsToDisplay}</div>
                 </div>
             </div>
         )
