@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { addToCart } from '../../ducks/reducer';
+import { updateCart } from '../../ducks/reducer';
 import './Peripherals';
 
 class Peripherals extends Component {
@@ -19,6 +19,12 @@ class Peripherals extends Component {
             })
         })
     }
+
+    addToCart(productId){
+        axios.post(`/api/add_to_cart/${productId}`).then(res => {
+            this.props.updateCart(res.data)
+        })
+    }
     render() {
 
         let peripheralsToDisplay = this.state.peripherals.map((periph, i) => {
@@ -28,7 +34,7 @@ class Peripherals extends Component {
                     <h4>Price: {periph.price}</h4>
                     <img height="150" widht="150" src={periph.image_url} alt='' />
                     <div></div>
-                    <button className='addCart' onClick={() => this.props.addToCart(periph)}>Add to cart</button>
+                    <button className='addCart' onClick={() => this.addToCart(periph.product_id)}>Add to cart</button>
                 </div>
             )
         })
@@ -53,4 +59,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { addToCart })(Peripherals)
+export default connect(mapStateToProps, { updateCart })(Peripherals)

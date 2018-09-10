@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Parts.css';
 import { connect } from 'react-redux';
-import { addToCart } from '../../ducks/reducer';
+import { updateCart } from '../../ducks/reducer';
 import './Parts.css';
 
 class Parts extends Component {
@@ -22,6 +22,12 @@ class Parts extends Component {
         })
     }
 
+    addToCart(productId){
+        axios.post(`/api/add_to_cart/${productId}`).then(res => {
+            this.props.updateCart(res.data)
+        })
+    }
+
     render() {
 
         let partsToDisplay = this.state.parts.map((part, i) => {
@@ -31,7 +37,7 @@ class Parts extends Component {
                     <h4>Price: {part.price}</h4>
                     <img height="150" width="150" src={part.image_url} alt="" />
                     <div></div>
-                    <button className='addCart' onClick={() => this.props.addToCart(part)}>Add to cart</button>
+                    <button className='addCart' onClick={() => this.addToCart(part.product_id)}>Add to cart</button>
                 </div>
             )
         })
@@ -56,4 +62,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { addToCart })(Parts)
+export default connect(mapStateToProps, { updateCart })(Parts)

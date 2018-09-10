@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { addToCart } from '../../ducks/reducer';
+import { updateCart } from '../../ducks/reducer';
 import './Audio.css';
 
 
@@ -21,7 +21,11 @@ class Audio extends Component {
         })
     }
 
-
+    addToCart(productId){
+        axios.post(`/api/add_to_cart/${productId}`).then(res => {
+            this.props.updateCart(res.data)
+        })
+    }
 
     render() {
         let audioToDisplay = this.state.audio.map((audioItem, i) => {
@@ -33,7 +37,7 @@ class Audio extends Component {
                     <h4>Price: {audioItem.price}</h4>
                     <img height="150" width="150" src={audioItem.image_url} alt="" />
                     <div>
-                        <button className='addCart' onClick={() => this.props.addToCart(audioItem)} >Add to cart</button>
+                        <button className='addCart' onClick={() => this.addToCart(audioItem.product_id)} >Add to cart</button>
                     </div>
                 </div>
 
@@ -59,4 +63,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { addToCart })(Audio);
+export default connect(mapStateToProps, { updateCart })(Audio);

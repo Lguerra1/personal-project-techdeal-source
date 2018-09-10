@@ -1,4 +1,3 @@
-// import axios from 'axios';
 
 
 const initialState = {
@@ -8,15 +7,15 @@ const initialState = {
     quantity: []
 }
 
-const ADD_TO_CART = "ADD_TO_CART"
+const UPDATE_CART = "UPDATE_CART"
 const REMOVE_FROM_CART = "REMOVE_FROM_CART"
 // const CHECKOUT = "CHECKOUT"
 const INCREASE_QUANTITY = "INCREASE_QUANTITY"
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        case ADD_TO_CART:
-            return { ...state, cart: [...state.cart,  action.payload] }
+        case UPDATE_CART:
+            return { ...state, cart: action.payload }
         //need to do a spread operator
         case REMOVE_FROM_CART:
             let index = state.cart.indexOf(action.payload);
@@ -31,12 +30,11 @@ export default function reducer(state = initialState, action) {
     }
 }
 
-export function addToCart(product_id) {
+export function updateCart(cart) {
     return {
-        type: ADD_TO_CART,
-        // payload: axios.post(`/api/add_to_cart`).then(res => {
-        //     res.data}),
-        payload: product_id
+        type: UPDATE_CART,
+        
+        payload: cart
 
     }
 }

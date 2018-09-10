@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './Display.css';
 import { connect } from 'react-redux';
-import { addToCart } from '../../ducks/reducer';
+import { updateCart } from '../../ducks/reducer';
 import './Display.css';
 
 class Display extends Component {
@@ -22,6 +22,12 @@ class Display extends Component {
 
     }
 
+    addToCart(productId){
+        axios.post(`/api/add_to_cart/${productId}`).then(res => {
+            this.props.updateCart(res.data)
+        })
+    }
+
     render() {
 
         let monitorsToDisplay = this.state.monitors.map((monitor, i) => {
@@ -31,7 +37,7 @@ class Display extends Component {
                     <h4>Price:  {monitor.price}</h4>
                     <img width="150" height="150" src={monitor.image_url} alt="" />
                     <div></div>
-                    <button className='addCart' onClick={() => this.props.addToCart(monitor)}>Add to cart</button>
+                    <button className='addCart' onClick={() => this.addToCart(monitor.product_id)}>Add to cart</button>
                 </div>
             )
         })
@@ -59,4 +65,4 @@ function mapStateToProps(state) {
 
 }
 
-export default connect(mapStateToProps, { addToCart })(Display)
+export default connect(mapStateToProps, { updateCart })(Display)

@@ -102,7 +102,7 @@ app.get(`/api/get_all_peripherals`, products_controller.readPeripherals)
 
 //--cart endpoints --//
 // app.get(`/api/get_order/`, cart_controller.getCartItems)
-app.post(`/api/add_to_cart`, cart_controller.addToCart)
+app.post(`/api/add_to_cart/:productId`, cart_controller.addToCart)
 app.delete(`/api/delete_item`, cart_controller.deleteItem)
 
 
