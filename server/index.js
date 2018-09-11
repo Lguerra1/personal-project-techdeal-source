@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const {
-    REACT_APP_CLIENT_ID, REACT_APP_DOMAIN, CLIENT_SECRET, SESSION_SECRET
+    REACT_APP_CLIENT_ID, REACT_APP_DOMAIN, CLIENT_SECRET, SESSION_SECRET, NODE_ENV
 } = process.env
 
 massive(process.env.CONNECTION_STRING).then(db => {
@@ -21,7 +21,7 @@ massive(process.env.CONNECTION_STRING).then(db => {
 })
 
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }));
@@ -50,7 +50,7 @@ app.get('/auth/callback', async (req, res) => {
     } = resWithUserData.data;
 
     let db = req.app.get('db')
-    let foundUser = await db.find_user([name, email, picture, sub])
+    let foundUser = await db.find_user([sub])
     if (foundUser[0]) {
         req.session.user = foundUser[0];
 
@@ -75,7 +75,19 @@ app.get('/auth/callback', async (req, res) => {
     })
 })
 
-app.get(`/api/user_data`, (req, res) => {
+function envCheck(req, res, next){
+    // if (NODE_ENV === 'dev') {
+    //     req.app.get('db').get_user_by_id([226]).then(userWithId => {
+    //         req.session.user = userWithId[0]
+    //         next();
+    //     })
+
+    // } else {
+    //     next()
+    // }
+}
+
+app.get(`/api/user_data`, envCheck, (req, res) => {
     if (req.session.user) {
         res.status(200).send(req.session.user);
     } else {
@@ -101,10 +113,12 @@ app.get(`/api/get_all_audio`, products_controller.readAudio)
 app.get(`/api/get_all_peripherals`, products_controller.readPeripherals)
 
 //--cart endpoints --//
-// app.get(`/api/get_order/`, cart_controller.getCartItems)
 app.post(`/api/add_to_cart/:productId`, cart_controller.addToCart)
-app.delete(`/api/delete_item`, cart_controller.deleteItem)
-
+app.delete(`/api/remove_from_cart/:cartId`, cart_controller.removeFromCart)
+app.put(`/api/increase_quantity/:cartId/:quantity`, cart_controller.increaseQuantity)
+app.delete(`/api/decrease_quantity/:cartId/:quantity`, cart_controller.decreaseQuantity)
+app.get(`/api/get_total`, cart_controller.getTotal);
+app.get(`/api/get_cart`, cart_controller.getCart);
 
 
 

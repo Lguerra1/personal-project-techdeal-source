@@ -31,9 +31,10 @@ carts table
 -- create table carts (
 -- cart_id serial primary key, 
 -- product_id integer REFERENCES products (product_id), 
--- user_id integer REFERENCES users (user_id)
+-- user_id integer REFERENCES users (user_id),
 -- order_id integer REFERENCES orders (id),
--- quantity integer
+-- quantity integer,
+-- price decimal
 -- )
 
 

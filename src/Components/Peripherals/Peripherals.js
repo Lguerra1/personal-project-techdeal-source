@@ -34,7 +34,8 @@ class Peripherals extends Component {
                     <h4>Price: {periph.price}</h4>
                     <img height="150" widht="150" src={periph.image_url} alt='' />
                     <div></div>
-                    <button className='addCart' onClick={() => this.addToCart(periph.product_id)}>Add to cart</button>
+                    <button className='addCart' onClick={() => this.addToCart(periph.product_id
+                        )}>Add to cart</button>
                 </div>
             )
         })
