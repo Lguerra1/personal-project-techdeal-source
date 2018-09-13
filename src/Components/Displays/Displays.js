@@ -17,12 +17,12 @@ class Display extends Component {
         axios.get('/api/get_all_displays').then(res => {
             this.setState({
                 monitors: res.data
-            })            
+            })
         })
 
     }
 
-    addToCart(productId){
+    addToCart(productId) {
         axios.post(`/api/add_to_cart/${productId}`).then(res => {
             this.props.updateCart(res.data)
         })
@@ -45,11 +45,18 @@ class Display extends Component {
         return (
             <div>
                 <h1>Displays</h1>
-                <div className="container">
-                    <div className="item">{monitorsToDisplay}</div>                                                     
-                    <div className="item">{monitorsToDisplay}</div>
-                    <div className="item">{monitorsToDisplay}</div>
+
+                <div className="grid">
+                    <div className="module">{monitorsToDisplay[0]}</div>
+                    <div className="module">{monitorsToDisplay[1]}</div>
+                    <div className="module">{monitorsToDisplay[2]}</div>
+                    <div className="module">{monitorsToDisplay[3]}</div>
+                    <div className="module">{monitorsToDisplay[4]}</div>
+                    <div className="module">{monitorsToDisplay[5]}</div>
+                    <div className="module">{monitorsToDisplay[6]}</div>
                 </div>
+
+
             </div>
         )
     }

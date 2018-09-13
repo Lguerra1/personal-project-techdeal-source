@@ -20,7 +20,7 @@ class Peripherals extends Component {
         })
     }
 
-    addToCart(productId){
+    addToCart(productId) {
         axios.post(`/api/add_to_cart/${productId}`).then(res => {
             this.props.updateCart(res.data)
         })
@@ -35,17 +35,21 @@ class Peripherals extends Component {
                     <img height="150" widht="150" src={periph.image_url} alt='' />
                     <div></div>
                     <button className='addCart' onClick={() => this.addToCart(periph.product_id
-                        )}>Add to cart</button>
+                    )}>Add to cart</button>
                 </div>
             )
         })
         return (
             <div>
                 <h1>Peripherals</h1>
-                <div className="container">
-                    <div className="item">{peripheralsToDisplay}</div>                                                     
-                    <div className="item">{peripheralsToDisplay}</div>
-                    <div className="item">{peripheralsToDisplay}</div>
+                <div className="grid">
+                    <div className="module">{peripheralsToDisplay[0]}</div>
+                    <div className="module">{peripheralsToDisplay[1]}</div>
+                    <div className="module">{peripheralsToDisplay[2]}</div>
+                    <div className="module">{peripheralsToDisplay[3]}</div>
+                    <div className="module">{peripheralsToDisplay[4]}</div>
+                    <div className="module">{peripheralsToDisplay[5]}</div>
+                    <div className="module">{peripheralsToDisplay[6]}</div>
                 </div>
 
             </div>

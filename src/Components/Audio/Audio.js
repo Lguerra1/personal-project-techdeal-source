@@ -37,21 +37,28 @@ class Audio extends Component {
                     <div ><h4>Description: {audioItem.description}</h4></div>
                     <div ><h4>Price: {audioItem.price}</h4></div>
                     <div><button className='addCart' onClick={() => this.addToCart(audioItem.product_id)} >Add to cart</button></div>
-
-
                 </div>
 
             )
         })
+
+        // for (i = 0; i < audioToDisplay.length; i++){
+
+        // }
+
         return (
             <div>
                 <h1>Audio</h1>
-            
-                    <div className='container'>
-                        <div className="item">{audioToDisplay}</div>
-                        <div className="item">{audioToDisplay}</div>
-                        <div className="item">{audioToDisplay}</div>
-                    </div>
+
+                <div className="grid">
+                    <div className="module">{audioToDisplay[0]}</div>
+                    <div className="module">{audioToDisplay[1]}</div>
+                    <div className="module">{audioToDisplay[2]}</div>
+                    <div className="module">{audioToDisplay[3]}</div>
+                    <div className="module">{audioToDisplay[4]}</div>
+                    <div className="module">{audioToDisplay[5]}</div>
+                    <div className="module">{audioToDisplay[6]}</div>                              
+                </div>
 
 
 
@@ -60,17 +67,8 @@ class Audio extends Component {
 
 
 
-   
 
 
-
-
-
-
-
-                    
-
-                
             </div>
         )
     }

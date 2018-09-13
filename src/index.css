@@ -1,8 +1,7 @@
 body {
-
   font-family: sans-serif;
   margin: 0 auto;
-  max-width: 90%;
+  max-width: 70em;
   padding: 1em 0;
 }
 
@@ -103,4 +102,38 @@ margin: 1px;
   cursor: pointer;
   -webkit-transition-duration: .50s;
   transition-duration: .50s;
+}
+
+  
+.grid {
+  /* Grid Fallback */
+  display: flex;
+  flex-wrap: wrap;
+  
+  /* Supports Grid */
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-auto-rows: minmax(150px, auto);
+  grid-gap: 3em;
+}
+
+.module {
+  /* Demo-Specific Styles */
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  
+  /* Flex Fallback */
+  margin-left: 5px;
+  margin-right: 5px;
+  flex: 1 1 200px;
+}
+
+/* If Grid is supported, remove the margin we set for the fallback */
+@supports (display: grid) {
+  .module {
+    margin: 0;
+  }
 }

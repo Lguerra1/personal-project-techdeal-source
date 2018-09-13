@@ -44,12 +44,17 @@ class Parts extends Component {
         return (
             <div>
                 <h1>PC Parts</h1>
-                <div className="container">
-                    <div className="item">{partsToDisplay}</div>                                                     
-                    <div className="item">{partsToDisplay}</div>
-                    <div className="item">{partsToDisplay}</div>
-                </div>
 
+
+                <div className="grid">
+                    <div className="module">{partsToDisplay[0]}</div>
+                    <div className="module">{partsToDisplay[1]}</div>
+                    <div className="module">{partsToDisplay[2]}</div>
+                    <div className="module">{partsToDisplay[3]}</div>
+                    <div className="module">{partsToDisplay[4]}</div>
+                    <div className="module">{partsToDisplay[5]}</div>
+                    <div className="module">{partsToDisplay[6]}</div>                              
+                </div>
             </div>
         )
     }
