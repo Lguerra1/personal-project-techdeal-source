@@ -4,12 +4,14 @@ const massive = require('massive');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const session = require('express-session');
+
 const products_controller = require('./controllers/products_controller');
 const cart_controller = require('./controllers/cart_controller');
 const stripe_controller = require('./controllers/stripe_controller');
 
 
 const app = express();
+app.use( express.static( `${__dirname}/../build` ) );
 app.use(bodyParser.json());
 
 const {
@@ -97,7 +99,7 @@ app.get(`/api/user_data`, envCheck, (req, res) => {
 
 app.get(`/auth/logout`, (req, res) => {
     req.session.destroy();
-    res.redirect(`http://localhost:3000`)
+    res.redirect(process.env.REDIRECTURL);
 })
 
 
@@ -120,6 +122,9 @@ app.delete(`/api/decrease_quantity/:cartId/:quantity`, cart_controller.decreaseQ
 app.get(`/api/get_total`, cart_controller.getTotal);
 app.get(`/api/get_cart`, cart_controller.getCart);
 app.delete(`/api/empty_cart`, cart_controller.emptyCart);
+
+// --- build ----//
+
 
 
 

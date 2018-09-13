@@ -60,15 +60,6 @@ class Audio extends Component {
                     <div className="module">{audioToDisplay[6]}</div>                              
                 </div>
 
-
-
-
-
-
-
-
-
-
             </div>
         )
     }
