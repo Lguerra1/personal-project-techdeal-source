@@ -4,9 +4,9 @@ const massive = require('massive');
 const axios = require('axios');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const users_controller = require('./controllers/users_controller');
 const products_controller = require('./controllers/products_controller');
 const cart_controller = require('./controllers/cart_controller');
+const stripe_controller = require('./controllers/stripe_controller');
 
 
 const app = express();
@@ -75,7 +75,7 @@ app.get('/auth/callback', async (req, res) => {
     })
 })
 
-function envCheck(req, res, next){
+function envCheck(req, res, next) {
     // if (NODE_ENV === 'dev') {
     //     req.app.get('db').get_user_by_id([226]).then(userWithId => {
     //         req.session.user = userWithId[0]
@@ -101,8 +101,8 @@ app.get(`/auth/logout`, (req, res) => {
 })
 
 
-//--- users endpoints --//
-
+//--- stripe endpoint ---//
+app.post(`/api/payment`, stripe_controller.handlePayment)
 
 
 //-- products endpoints --//
@@ -119,6 +119,7 @@ app.put(`/api/increase_quantity/:cartId/:quantity`, cart_controller.increaseQuan
 app.delete(`/api/decrease_quantity/:cartId/:quantity`, cart_controller.decreaseQuantity)
 app.get(`/api/get_total`, cart_controller.getTotal);
 app.get(`/api/get_cart`, cart_controller.getCart);
+app.delete(`/api/empty_cart`, cart_controller.emptyCart);
 
 
 

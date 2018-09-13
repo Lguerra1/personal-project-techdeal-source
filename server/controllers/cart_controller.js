@@ -58,9 +58,9 @@ module.exports = {
 
     getTotal: (req, res, next) => {
         const db = req.app.get('db')
-        // const { user_id } = req.session.user        
+        const { user_id } = req.session.user        
 
-        db.total_price().then(totalPrice => {
+        db.total_price([user_id]).then(totalPrice => {
             res.status(200).send(totalPrice)
 
         }
@@ -75,5 +75,15 @@ module.exports = {
             res.status(200).send(cart)
         })
 
+    },
+
+    emptyCart: (req, res, next) => {
+        const db = req.app.get('db')
+        const { user_id } = req.session.user
+
+        db.empty_cart([user_id]).then(cart => {
+            res.status(200).send(cart)
+        })
     }
+
 }

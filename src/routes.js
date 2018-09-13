@@ -7,6 +7,7 @@ import Peripherals from './Components/Peripherals/Peripherals';
 import Home from './Components/Home/Home';
 import Cart from './Components/Cart/Cart';
 
+
 export default (
     <Switch>
         <Route  exact path='/' component = {Home}/>
@@ -15,6 +16,7 @@ export default (
         <Route path='/parts' component = {Parts}/>
         <Route path='/peripherals' component = {Peripherals}/>
         <Route path='/cart' component = {Cart}/>
+        
         
         <Route path='/types/:type' component = {Cart}/>
     </Switch>

@@ -30,7 +30,7 @@ export default function reducer(state = initialState, action) {
 
 export function updateCart(cart) {
     return {
-        type: UPDATE_CART,        
+        type: UPDATE_CART,
         payload: cart
 
     }
@@ -43,15 +43,5 @@ export function removeFromCart(product_id) {
         payload: product_id
     }
 }
-// export function checkout(totalCost) {
-//     return {
-//         type: CHECKOUT,
-//         payload: totalCost
-//     }
-// }
-
-
-
-
 
 

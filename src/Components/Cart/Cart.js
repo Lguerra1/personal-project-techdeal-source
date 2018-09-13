@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { updateCart } from '../../ducks/reducer';
 import axios from 'axios';
 import './Cart.css';
+import StripeCheckout from 'react-stripe-checkout';
 
 
 // connect cart to redux
@@ -17,6 +18,26 @@ class Cart extends Component {
             total: 0
         }
     };
+
+
+    //---------------------Stripe-----------------//
+
+    onToken = (token) => {
+        token.card = void 0
+        axios.post(`/api/payment`, { token, amount: Math.floor(this.state.total * 100) }).then(res => {
+            console.log(res)
+            axios.delete(`/api/empty_cart`).then(() => {
+                this.getCart()
+                this.getTotal()
+            })
+        })
+    }
+
+
+
+
+
+    //---------------------Stripe----------------------//
 
     componentDidMount() {
         this.getTotal()
@@ -94,8 +115,22 @@ class Cart extends Component {
                         </div>
                     </div>
                 </section>
-
                 <h3>Total: {this.state.total} </h3>
+
+
+
+
+                <StripeCheckout
+                    name="TechSource"
+                    description="Get that money!"
+                    image="https://scontent.fmkc1-1.fna.fbcdn.net/v/t1.0-1/p56x56/21430278_10155658990182974_7612374069765381031_n.jpg?_nc_cat=0&oh=998e5e05bd4a820d83f2a4fac88a006d&oe=5C2BAA89"
+                    token={this.onToken}
+                    stripeKey="pk_test_tVrkPvtOulqx5FOXnM7QEN4O"
+                    // stripeKey={process.env.REACT_APP_STRIPE_KEY}
+                    amount={this.state.total * 100}
+                />
+
+
 
             </div>
 

@@ -1,35 +1,14 @@
 body {
-  margin: 0;
-  padding: 0;
+
   font-family: sans-serif;
- 
+  margin: 0 auto;
+  max-width: 90%;
+  padding: 1em 0;
 }
 
 .imageLink {
   margin: auto;
 }
-
-/* 
-.container {
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  
-  grid-column-gap: 10px;
-  grid-row-gap: 25px;
-  
-  background-color: white;
-  padding: 10px;
-  border-radius: 10px;
-  
-}
-.item {
-  background-color: white;    
-  padding: 40px;
-  font-size: 15px;
-  font-weight: bolder;
-  text-align: center;
-  
-} */
 
 .cart {
   float: right;
@@ -58,18 +37,18 @@ body {
 
 
 .loginbutton {
-  -webkit-transition-duration: 0.4s;
-  transition-duration: .5s;
-  border-radius: 0px;
-  font-size: 15px;
-  font-weight: bolder;
-  float: left;
+-webkit-transition-duration: 0.4s;
+transition-duration: .5s;
+border-radius: 0px;
+font-size: 15px;
+font-weight: bolder;
+float: left;
 
-  background-color: rgb(255, 255, 255);
-    color: black;
-    border: 2px solid black;
-    padding: 10px 15px;
-    margin: 1px;  
+background-color: rgb(255, 255, 255);
+color: black;
+border: 2px solid black;
+padding: 10px 15px;
+margin: 1px;  
 }
 
 .loginbutton:hover {
@@ -77,3 +56,51 @@ body {
   color: white;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  
+  grid-column-gap: 10px;
+  grid-row-gap: 25px;
+  
+  background-color: white;
+  padding: 10px;
+  border-radius: 10px;   
+}
+.item {
+  background-color: white;
+  padding: 40px;
+  font-size: 15px;
+  font-weight: bolder;
+  text-align: center;    
+}
+
+.addCart {
+  background-color: darkgray;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  padding: 5px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.addCart:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  background-color: #212121;
+  border: none;
+  color: white;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: .50s;
+  transition-duration: .50s;
+}

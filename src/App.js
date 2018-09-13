@@ -14,17 +14,16 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      
         <button className='loginbutton' onClick={this.login}>Login</button>
+
         <button className='loginbutton'>Logout</button>   
 
         <div><Link to='/cart'><img className='cart' height='50' src="https://blog.photoshelter.com/wp-content/uploads/2014/06/shopping-cart-1000pxV21-900x600.png" alt='cart' /></Link></div>
 
         <div className='imageLink'><Link to='/'><img height="150" width="350" src="http://static1.squarespace.com/static/576bf6f9197aeaf55ed0447d/t/5772e573579fb3a687216f88/1535485333119/?format=1500w" alt='logo' /></Link></div>
 
-        {routes}
-
-
-         
+        {routes} 
 
       </div>
     );

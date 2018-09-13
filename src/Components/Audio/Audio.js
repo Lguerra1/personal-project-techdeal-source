@@ -21,7 +21,7 @@ class Audio extends Component {
         })
     }
 
-    addToCart(productId){
+    addToCart(productId) {
         axios.post(`/api/add_to_cart/${productId}`).then(res => {
             this.props.updateCart(res.data)
         })
@@ -33,12 +33,12 @@ class Audio extends Component {
             return (
                 <div key={i}>
 
-                    <h4>Description: {audioItem.description}</h4>
-                    <h4>Price: {audioItem.price}</h4>
-                    <img height="150" width="150" src={audioItem.image_url} alt="" />
-                    <div>
-                        <button className='addCart' onClick={() => this.addToCart(audioItem.product_id)} >Add to cart</button>
-                    </div>
+                    <div><img height="150" width="150" src={audioItem.image_url} alt="" /></div>
+                    <div ><h4>Description: {audioItem.description}</h4></div>
+                    <div ><h4>Price: {audioItem.price}</h4></div>
+                    <div><button className='addCart' onClick={() => this.addToCart(audioItem.product_id)} >Add to cart</button></div>
+
+
                 </div>
 
             )
@@ -46,12 +46,31 @@ class Audio extends Component {
         return (
             <div>
                 <h1>Audio</h1>
+            
+                    <div className='container'>
+                        <div className="item">{audioToDisplay}</div>
+                        <div className="item">{audioToDisplay}</div>
+                        <div className="item">{audioToDisplay}</div>
+                    </div>
 
-                <div className="container">
-                    <div className="item">{audioToDisplay}</div>
-                    <div className="item">{audioToDisplay}</div>
-                    <div className="item">{audioToDisplay}</div>
-                </div>
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+                    
+
+                
             </div>
         )
     }
