@@ -34,8 +34,8 @@ class Parts extends Component {
             return (
                 <div key={i}>
                     <h4>Description: {part.description}</h4>
+                    <img height="250px" width="250px" src={part.image_url} alt="" />
                     <h4>Price: {part.price}</h4>
-                    <img height="150" width="150" src={part.image_url} alt="" />
                     <div></div>
                     <button className='addCart' onClick={() => this.addToCart(part.product_id)}>Add to cart</button>
                 </div>

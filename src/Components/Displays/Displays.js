@@ -34,8 +34,8 @@ class Display extends Component {
             return (
                 <div key={i}>
                     <h4>Description: {monitor.description}</h4>
+                    <img width="250px" height="250px" src={monitor.image_url} alt="" />
                     <h4>Price:  {monitor.price}</h4>
-                    <img width="150" height="150" src={monitor.image_url} alt="" />
                     <div></div>
                     <button className='addCart' onClick={() => this.addToCart(monitor.product_id)}>Add to cart</button>
                 </div>

@@ -3,10 +3,12 @@ body {
   margin: 0 auto;
   max-width: 70em;
   padding: 1em 0;
+  background-color: rgb(250, 250, 250);
 }
 
+
 .imageLink {
-  margin: auto;
+  float: auto;
 }
 
 .cart {
@@ -46,7 +48,7 @@ float: left;
 background-color: rgb(255, 255, 255);
 color: black;
 border: 2px solid black;
-padding: 10px 15px;
+padding: 5px 10px;
 margin: 1px;  
 }
 
@@ -61,8 +63,12 @@ margin: 1px;
   
   grid-column-gap: 10px;
   grid-row-gap: 25px;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
   
-  background-color: white;
+  background-color: rgb(250, 250, 250);
   padding: 10px;
   border-radius: 10px;   
 }
@@ -111,29 +117,31 @@ margin: 1px;
   flex-wrap: wrap;
   
   /* Supports Grid */
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-auto-rows: minmax(150px, auto);
-  grid-gap: 3em;
+  grid-gap: 3em; */
 }
 
 .module {
   /* Demo-Specific Styles */
-  background: white;
+  margin: 10px;
+  background: white !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 400px;
+  height: 480px;
+  width: 320px;
+  padding: 10px;
+  overflow: hidden;
+  flex-direction: wrap !important;
+  border: 2px solid white;
+  border-radius: 10px
   
-  /* Flex Fallback */
-  margin-left: 5px;
+  /* Flex Fallback
+  /* margin-left: 5px;
   margin-right: 5px;
-  flex: 1 1 200px;
-}
+  flex: 1 1 200px; */
+} 
 
 /* If Grid is supported, remove the margin we set for the fallback */
-@supports (display: grid) {
-  .module {
-    margin: 0;
-  }
-}
