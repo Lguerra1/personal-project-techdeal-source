@@ -54,6 +54,8 @@ class Display extends Component {
                     <div className="module">{monitorsToDisplay[4]}</div>
                     <div className="module">{monitorsToDisplay[5]}</div>
                     <div className="module">{monitorsToDisplay[6]}</div>
+                    <div className="module">{monitorsToDisplay[7]}</div>
+                    <div className="module">{monitorsToDisplay[8]}</div>
                 </div>
 
 

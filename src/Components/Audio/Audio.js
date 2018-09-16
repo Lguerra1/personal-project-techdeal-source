@@ -57,7 +57,9 @@ class Audio extends Component {
                     <div className="module">{audioToDisplay[3]}</div>
                     <div className="module">{audioToDisplay[4]}</div>
                     <div className="module">{audioToDisplay[5]}</div>
-                    <div className="module">{audioToDisplay[6]}</div>                              
+                    <div className="module">{audioToDisplay[6]}</div>
+                    <div className="module">{audioToDisplay[7]}</div>
+                    <div className="module">{audioToDisplay[8]}</div>                                                 
                 </div>
 
             </div>

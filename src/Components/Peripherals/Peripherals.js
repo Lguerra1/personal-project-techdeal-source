@@ -31,7 +31,7 @@ class Peripherals extends Component {
             return (
                 <div key={i}>
                     <h4>Description: {periph.description}</h4>
-                    <img height="250px" widht="250px" src={periph.image_url} alt='' />
+                    <img height="215px" widht="215px" src={periph.image_url} alt='' />
                     <h4>Price: {periph.price}</h4>
                     <div></div>
                     <button className='addCart' onClick={() => this.addToCart(periph.product_id
@@ -50,6 +50,8 @@ class Peripherals extends Component {
                     <div className="module">{peripheralsToDisplay[4]}</div>
                     <div className="module">{peripheralsToDisplay[5]}</div>
                     <div className="module">{peripheralsToDisplay[6]}</div>
+                    <div className="module">{peripheralsToDisplay[7]}</div>
+                    <div className="module">{peripheralsToDisplay[8]}</div>
                 </div>
 
             </div>

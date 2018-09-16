@@ -54,6 +54,8 @@ class Parts extends Component {
                     <div className="module">{partsToDisplay[4]}</div>
                     <div className="module">{partsToDisplay[5]}</div>
                     <div className="module">{partsToDisplay[6]}</div>                              
+                    <div className="module">{partsToDisplay[7]}</div>                              
+                    <div className="module">{partsToDisplay[8]}</div>                              
                 </div>
             </div>
         )
