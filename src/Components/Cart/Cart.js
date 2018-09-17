@@ -73,6 +73,7 @@ class Cart extends Component {
             console.log(res)
             this.props.updateCart(res.data)
         }).then(this.getTotal())
+        .then(this.getTotal())
     }
 
     decreaseQuantity(cartId, quantity) {
@@ -80,6 +81,7 @@ class Cart extends Component {
             console.log(res)
             this.props.updateCart(res.data)
         }).then(this.getTotal())
+        .then(this.getTotal())
     };
 
     render() {
