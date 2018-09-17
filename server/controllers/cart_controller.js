@@ -32,7 +32,7 @@ module.exports = {
 
         let { cartId, quantity } = req.params
         const { user_id } = req.session.user
-        // let newQuantity = quantity++
+        
 
         db.increase_quantity([quantity, cartId, user_id]).then(() => {
             db.get_user_cart([user_id]).then(cart => {
