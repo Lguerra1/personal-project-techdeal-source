@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ debug: process.env.DEBUG });
 const express = require('express');
 const massive = require('massive');
 const axios = require('axios');
@@ -15,11 +15,13 @@ app.use(express.static(`${__dirname}/../build`));
 app.use(bodyParser.json());
 
 const {
-    REACT_APP_CLIENT_ID, REACT_APP_DOMAIN, CLIENT_SECRET, SESSION_SECRET, NODE_ENV
+    REACT_APP_CLIENT_ID, REACT_APP_DOMAIN, CLIENT_SECRET, SESSION_SECRET, NODE_ENV, CONNECTION_STRING
 } = process.env
 
-massive(process.env.CONNECTION_STRING).then(db => {
+massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
+}).catch(error => {
+    console.log(error)
 })
 
 app.use(session({
