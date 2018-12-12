@@ -25,7 +25,7 @@ massive(CONNECTION_STRING).then(db => {
 })
 
 app.use(session({
-    secret: SESSION_SECRET,
+    secret: SESSION_SECRET || "gwrggowarignwrg",
     resave: false,
     saveUninitialized: true
 }));
