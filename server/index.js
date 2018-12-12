@@ -11,7 +11,7 @@ const stripe_controller = require('./controllers/stripe_controller');
 
 
 const app = express();
-app.use( express.static( `${__dirname}/../build` ) );
+app.use(express.static(`${__dirname}/../build`));
 app.use(bodyParser.json());
 
 const {
@@ -31,51 +31,58 @@ app.use(session({
 //-------------- Auth0 -----------------//
 
 app.get('/auth/callback', async (req, res) => {
-    const payload = {
-        client_id: REACT_APP_CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-        code: req.query.code,
-        grant_type: 'authorization_code',
-        redirect_uri: process.env.AUTH_URI
-        
-    }
+    try {
+        const payload = {
+            client_id: REACT_APP_CLIENT_ID,
+            client_secret: CLIENT_SECRET,
+            code: req.query.code,
+            grant_type: 'authorization_code',
+            redirect_uri: process.env.AUTH_URI
 
-    //trading code for token
-    let resWithToken = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload);
-    // use token to get user data
-    let resWithUserData = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${resWithToken.data.access_token}`);
+        }
 
-    let {
-        email,
-        name,
-        picture,
-        sub
-    } = resWithUserData.data;
+        //trading code for token
+        let resWithToken = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload);
+        // use token to get user data
+        let resWithUserData = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${resWithToken.data.access_token}`);
 
-    let db = req.app.get('db')
-    let foundUser = await db.find_user([sub])
-    if (foundUser[0]) {
-        req.session.user = foundUser[0];
+        let {
+            email,
+            name,
+            picture,
+            sub
+        } = resWithUserData.data;
 
-    } else {
-        let createdUser = await db.create_user([name, email, picture, sub])
-        req.session.user = createdUser[0];
-    }
-    await db.find_user_cart(req.session.user.user_id).then(user_cart => {
-        if (!user_cart[0]) {
-            db.new_order(req.session.user.user_id).then(new_order => {
-                req.session.user.order = new_order[0].id
-                res.redirect('/#/cart');
-
-                console.log(req.session.user)
-            })
+        let db = req.app.get('db')
+        let foundUser = await db.find_user([sub])
+        if (foundUser[0]) {
+            req.session.user = foundUser[0];
 
         } else {
-            req.session.user.order = user_cart[0].id
-            res.redirect('/#/cart');
-            console.log(req.session.user)
+            let createdUser = await db.create_user([name, email, picture, sub])
+            req.session.user = createdUser[0];
         }
-    })
+        await db.find_user_cart(req.session.user.user_id).then(user_cart => {
+            if (!user_cart[0]) {
+                db.new_order(req.session.user.user_id).then(new_order => {
+                    req.session.user.order = new_order[0].id
+                    res.redirect('/#/cart');
+
+                    console.log(req.session.user)
+                })
+
+            } else {
+                req.session.user.order = user_cart[0].id
+                res.redirect('/#/cart');
+                console.log(req.session.user)
+            }
+        })
+
+    }
+    catch (error) {
+        console.log("error")
+    }
+
 })
 
 function envCheck(req, res, next) {
@@ -132,6 +139,3 @@ app.delete(`/api/empty_cart`, cart_controller.emptyCart);
 
 const PORT = process.env.SERVER_PORT || 3010
 app.listen(PORT, () => { console.log(`Listening on Port ${PORT}`) });
-
-
-
