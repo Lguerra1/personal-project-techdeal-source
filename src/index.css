@@ -58,8 +58,8 @@ margin: 1px;
 }
 
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
   
   grid-column-gap: 10px;
   grid-row-gap: 25px;
@@ -125,7 +125,7 @@ margin: 1px;
 
 .module {
   /* Demo-Specific Styles */
-  margin: 10px;
+  margin: 10px auto;
   background: white !important;
   display: flex;
   align-items: center;
@@ -136,7 +136,8 @@ margin: 1px;
   overflow: hidden;
   flex-direction: wrap !important;
   border: 2px solid white;
-  border-radius: 10px
+  border-radius: 10px;
+
   
   /* Flex Fallback
   /* margin-left: 5px;
