@@ -14,7 +14,7 @@ class Parts extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/get_all_parts`).then(res => {
+        axios.get(`http://localhost:3010/api/get_all_parts`).then(res => {
             this.setState({
                 parts: res.data
             })
@@ -23,7 +23,7 @@ class Parts extends Component {
     }
 
     addToCart(productId){
-        axios.post(`/api/add_to_cart/${productId}`).then(res => {
+        axios.post(`http://localhost:3010/api/add_to_cart/${productId}`).then(res => {
             this.props.updateCart(res.data)
         })
     }

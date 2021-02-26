@@ -14,7 +14,7 @@ class Audio extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/get_all_audio`).then(res => {
+        axios.get(`http://localhost:3010/api/get_all_audio`).then(res => {
             this.setState({
                 audio: res.data
             })
@@ -22,7 +22,7 @@ class Audio extends Component {
     }
 
     addToCart(productId) {
-        axios.post(`/api/add_to_cart/${productId}`).then(res => {
+        axios.post(`http://localhost:3010/api/add_to_cart/${productId}`).then(res => {
             this.props.updateCart(res.data)
         })
     }

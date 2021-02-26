@@ -24,9 +24,9 @@ class Cart extends Component {
 
     onToken = (token) => {
         token.card = void 0
-        axios.post(`/api/payment`, { token, amount: Math.floor(this.state.total * 100) }).then(res => {
+        axios.post(`http://localhost:3010/api/payment`, { token, amount: Math.floor(this.state.total * 100) }).then(res => {
             console.log(res)
-            axios.delete(`/api/empty_cart`).then(() => {
+            axios.delete(`http://localhost:3010/api/empty_cart`).then(() => {
                 this.getCart()
                 this.getTotal()
             })
@@ -45,7 +45,7 @@ class Cart extends Component {
     }
 
     getTotal() {
-        axios.get(`/api/get_total`).then(res => {
+        axios.get(`http://localhost:3010/api/get_total`).then(res => {
             console.log(res)
             this.setState({
                 total: res.data[0].sum
@@ -55,21 +55,21 @@ class Cart extends Component {
     }
 
     getCart() {
-        axios.get(`/api/get_cart`).then(res => {
+        axios.get(`http://localhost:3010/api/get_cart`).then(res => {
             this.props.updateCart(res.data)
         })
     }
 
 
     removeFromCart(cartId) {
-        axios.delete(`/api/remove_from_cart/${cartId}`).then(res => {
+        axios.delete(`http://localhost:3010/api/remove_from_cart/${cartId}`).then(res => {
 
             this.props.updateCart(res.data)
         }).then(this.getTotal())
     }
 
     increaseQuantity(cartId, quantity) {
-        axios.put(`/api/increase_quantity/${cartId}/${quantity}`).then(res => {
+        axios.put(`http://localhost:3010/api/increase_quantity/${cartId}/${quantity}`).then(res => {
             console.log(res)
             this.props.updateCart(res.data)
         }).then(this.getTotal())
@@ -77,7 +77,7 @@ class Cart extends Component {
     }
 
     decreaseQuantity(cartId, quantity) {
-        axios.delete(`/api/decrease_quantity/${cartId}/${quantity}`).then(res => {
+        axios.delete(`http://localhost:3010/api/decrease_quantity/${cartId}/${quantity}`).then(res => {
             console.log(res)
             this.props.updateCart(res.data)
         }).then(this.getTotal())

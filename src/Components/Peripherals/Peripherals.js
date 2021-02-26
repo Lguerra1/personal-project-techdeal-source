@@ -13,7 +13,7 @@ class Peripherals extends Component {
     }
 
     componentDidMount() {
-        axios.get(`/api/get_all_peripherals`).then(res => {
+        axios.get(`http://localhost:3010/api/get_all_peripherals`).then(res => {
             this.setState({
                 peripherals: res.data
             })
@@ -21,7 +21,7 @@ class Peripherals extends Component {
     }
 
     addToCart(productId) {
-        axios.post(`/api/add_to_cart/${productId}`).then(res => {
+        axios.post(`http://localhost:3010/api/add_to_cart/${productId}`).then(res => {
             this.props.updateCart(res.data)
         })
     }
