@@ -4,7 +4,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET);
 module.exports = {
 
     handlePayment: (req, res) => {
-        const { amount, token:{id}} = req.body
+        const { amount, token: { id } } = req.body
         stripe.charges.create(
             {
                 amount: amount,
@@ -13,7 +13,7 @@ module.exports = {
                 description: "Test charge from Larry"
             },
             (err, charge) => {
-                if(err){
+                if (err) {
                     console.log(err)
                     return res.status(500).send(err)
                 } else {

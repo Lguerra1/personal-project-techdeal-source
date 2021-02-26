@@ -1,9 +1,10 @@
-require('dotenv').config({ debug: process.env.DEBUG });
-const express = require('express');
-const massive = require('massive');
-const axios = require('axios');
-const bodyParser = require('body-parser');
-const session = require('express-session');
+require(`dotenv`).config({ path: '../.env' });
+const express = require('express'),
+    massive = require('massive'),
+    axios = require('axios'),
+    bodyParser = require('body-parser'),
+    session = require('express-session'),
+    cors = require(`cors`);
 
 const products_controller = require('./controllers/products_controller');
 const cart_controller = require('./controllers/cart_controller');
@@ -13,16 +14,21 @@ const stripe_controller = require('./controllers/stripe_controller');
 const app = express();
 app.use(express.static(`${__dirname}/../build`));
 app.use(bodyParser.json());
+app.use(cors());
 
 const {
     REACT_APP_CLIENT_ID, REACT_APP_DOMAIN, CLIENT_SECRET, SESSION_SECRET, NODE_ENV, CONNECTION_STRING
-} = process.env
+} = process.env;
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
 }).catch(error => {
     console.log(error)
-})
+});
+
+
+
+
 
 app.use(session({
     secret: SESSION_SECRET || "gwrggowarignwrg",
@@ -33,6 +39,7 @@ app.use(session({
 //-------------- Auth0 -----------------//
 
 app.get('/auth/callback', async (req, res) => {
+    console.log("HOLA IOS THISD AFWLFWOERKING ???")
     try {
         const payload = {
             client_id: REACT_APP_CLIENT_ID,
@@ -45,6 +52,7 @@ app.get('/auth/callback', async (req, res) => {
 
         //trading code for token
         let resWithToken = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload);
+        console.log(resWithToken)
         // use token to get user data
         let resWithUserData = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${resWithToken.data.access_token}`);
 
@@ -54,9 +62,10 @@ app.get('/auth/callback', async (req, res) => {
             picture,
             sub
         } = resWithUserData.data;
+        console.log(sub)
 
         let db = req.app.get('db')
-        let foundUser = await db.find_user([sub])
+        // let foundUser = await db.query(`SELECT * FROM user where `)find_user([sub])
         if (foundUser[0]) {
             req.session.user = foundUser[0];
 
@@ -118,7 +127,7 @@ app.post(`/api/payment`, stripe_controller.handlePayment)
 
 
 //-- products endpoints --//
-app.get('/api/get_all_products', products_controller.read)
+app.get('/api/get_all_products', products_controller.read);
 app.get(`/api/get_all_displays`, products_controller.readDisplays)
 app.get(`/api/get_all_parts`, products_controller.readParts)
 app.get(`/api/get_all_audio`, products_controller.readAudio)
@@ -139,5 +148,5 @@ app.delete(`/api/empty_cart`, cart_controller.emptyCart);
 
 
 
-const PORT = process.env.SERVER_PORT || 3010
+const PORT = process.env.SERVER_PORT
 app.listen(PORT, () => { console.log(`Listening on Port ${PORT}`) });

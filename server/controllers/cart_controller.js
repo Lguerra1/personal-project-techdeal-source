@@ -1,6 +1,7 @@
 module.exports = {
 
     addToCart: (req, res, next) => {
+        console.log(req.params)
         const db = req.app.get('db');
         const { productId } = req.params
         const { user_id } = req.session.user
@@ -32,7 +33,7 @@ module.exports = {
 
         let { cartId, quantity } = req.params
         const { user_id } = req.session.user
-        
+
 
         db.increase_quantity([quantity, cartId, user_id]).then(() => {
             db.get_user_cart([user_id]).then(cart => {
@@ -58,7 +59,7 @@ module.exports = {
 
     getTotal: (req, res, next) => {
         const db = req.app.get('db')
-        const { user_id } = req.session.user        
+        const { user_id } = req.session.user
 
         db.total_price([user_id]).then(totalPrice => {
             res.status(200).send(totalPrice)
