@@ -26,10 +26,6 @@ massive(CONNECTION_STRING).then(db => {
     console.log(error)
 });
 
-
-
-
-
 app.use(session({
     secret: SESSION_SECRET || "gwrggowarignwrg",
     resave: false,
@@ -38,61 +34,42 @@ app.use(session({
 
 //-------------- Auth0 -----------------//
 
-app.get('/auth/callback', async (req, res) => {
-    console.log("HOLA IOS THISD AFWLFWOERKING ???")
-    try {
-        const payload = {
-            client_id: REACT_APP_CLIENT_ID,
-            client_secret: CLIENT_SECRET,
-            code: req.query.code,
-            grant_type: 'authorization_code',
-            redirect_uri: process.env.AUTH_URI
+app.post('/login', async (req, res) => {
+    console.log('test')
+    
 
-        }
+    // try {
+      
 
-        //trading code for token
-        let resWithToken = await axios.post(`https://${REACT_APP_DOMAIN}/oauth/token`, payload);
-        console.log(resWithToken)
-        // use token to get user data
-        let resWithUserData = await axios.get(`https://${REACT_APP_DOMAIN}/userinfo?access_token=${resWithToken.data.access_token}`);
+    //     let db = req.app.get('db')
+    //     // let foundUser = await db.query(`SELECT * FROM user where `)find_user([sub])
+    //     if (foundUser[0]) {
+    //         req.session.user = foundUser[0];
 
-        let {
-            email,
-            name,
-            picture,
-            sub
-        } = resWithUserData.data;
-        console.log(sub)
+    //     } else {
+    //         let createdUser = await db.create_user([name, email, picture, sub])
+    //         req.session.user = createdUser[0];
+    //     }
+    //     await db.find_user_cart(req.session.user.user_id).then(user_cart => {
+    //         if (!user_cart[0]) {
+    //             db.new_order(req.session.user.user_id).then(new_order => {
+    //                 req.session.user.order = new_order[0].id
+    //                 res.redirect('/#/cart');
 
-        let db = req.app.get('db')
-        // let foundUser = await db.query(`SELECT * FROM user where `)find_user([sub])
-        if (foundUser[0]) {
-            req.session.user = foundUser[0];
+    //                 console.log(req.session.user)
+    //             })
 
-        } else {
-            let createdUser = await db.create_user([name, email, picture, sub])
-            req.session.user = createdUser[0];
-        }
-        await db.find_user_cart(req.session.user.user_id).then(user_cart => {
-            if (!user_cart[0]) {
-                db.new_order(req.session.user.user_id).then(new_order => {
-                    req.session.user.order = new_order[0].id
-                    res.redirect('/#/cart');
+    //         } else {
+    //             req.session.user.order = user_cart[0].id
+    //             res.redirect('/#/cart');
+    //             console.log(req.session.user)
+    //         }
+    //     })
 
-                    console.log(req.session.user)
-                })
-
-            } else {
-                req.session.user.order = user_cart[0].id
-                res.redirect('/#/cart');
-                console.log(req.session.user)
-            }
-        })
-
-    }
-    catch (error) {
-        console.log("error")
-    }
+    // }
+    // catch (error) {
+    //     console.log("error")
+    // }
 
 })
 
