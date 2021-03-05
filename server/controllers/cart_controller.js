@@ -86,19 +86,14 @@ module.exports = {
         const db = req.app.get('db');
         const { user_id } = req.params;
 
-        console.log(user_id);
 
         try {
             await db.query(`DELETE FROM carts WHERE user_id = ${user_id}`);
             let cart = await db.query(`select * from carts join products on products.product_id = carts.product_id where user_id = ${user_id};`);
-            res.status(200).send(cart)
+            res.status(200).send(cart);
         } catch (err) {
-            res.status(400).send(err)
+            res.status(400).send(err);
         }
-
-        // db.empty_cart([user_id]).then(cart => {
-        //     res.status(200).send(cart)
-        // })
     }
 
 }
