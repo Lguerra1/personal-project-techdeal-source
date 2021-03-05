@@ -15,7 +15,8 @@ class Cart extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            total: 0
+            total: 0,
+            user_id: localStorage.getItem('user_id')
         }
     };
 
@@ -26,27 +27,23 @@ class Cart extends Component {
         token.card = void 0
         axios.post(`http://localhost:3010/api/payment`, { token, amount: Math.floor(this.state.total * 100) }).then(res => {
             console.log(res)
-            axios.delete(`http://localhost:3010/api/empty_cart`).then(() => {
-                this.getCart()
-                this.getTotal()
+            axios.delete(`http://localhost:3010/api/empty_cart/${this.state.user_id}`).then(() => {
+                this.getCart();
+                this.getTotal();
             })
         })
     }
 
 
-
-
-
     //---------------------Stripe----------------------//
 
     componentDidMount() {
-        this.getTotal()
-        this.getCart()
+        this.getTotal();
+        this.getCart();
     }
 
     getTotal() {
-        axios.get(`http://localhost:3010/api/get_total`).then(res => {
-            console.log(res)
+        axios.get(`http://localhost:3010/api/get_total/${this.state.user_id}`).then(res => {
             this.setState({
                 total: res.data[0].sum
             })
@@ -55,33 +52,31 @@ class Cart extends Component {
     }
 
     getCart() {
-        axios.get(`http://localhost:3010/api/get_cart`).then(res => {
-            this.props.updateCart(res.data)
+        axios.get(`http://localhost:3010/api/get_cart/${this.state.user_id}`).then(res => {
+            this.props.updateCart(res.data);
         })
     }
 
 
     removeFromCart(cartId) {
-        axios.delete(`http://localhost:3010/api/remove_from_cart/${cartId}`).then(res => {
-
+        axios.delete(`http://localhost:3010/api/remove_from_cart/${cartId}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
-        }).then(this.getTotal())
+        }).then(this.getTotal()).then(this.getTotal());
     }
 
+
     increaseQuantity(cartId, quantity) {
-        axios.put(`http://localhost:3010/api/increase_quantity/${cartId}/${quantity}`).then(res => {
-            console.log(res)
+        axios.put(`http://localhost:3010/api/increase_quantity/${cartId}/${quantity}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         }).then(this.getTotal())
-        .then(this.getTotal())
+            .then(this.getTotal())
     }
 
     decreaseQuantity(cartId, quantity) {
-        axios.delete(`http://localhost:3010/api/decrease_quantity/${cartId}/${quantity}`).then(res => {
-            console.log(res)
+        axios.delete(`http://localhost:3010/api/decrease_quantity/${cartId}/${quantity}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         }).then(this.getTotal())
-        .then(this.getTotal())
+            .then(this.getTotal())
     };
 
     render() {
@@ -128,7 +123,6 @@ class Cart extends Component {
                     image="https://scontent.fmkc1-1.fna.fbcdn.net/v/t1.0-1/p56x56/21430278_10155658990182974_7612374069765381031_n.jpg?_nc_cat=0&oh=998e5e05bd4a820d83f2a4fac88a006d&oe=5C2BAA89"
                     token={this.onToken}
                     stripeKey="pk_test_tVrkPvtOulqx5FOXnM7QEN4O"
-                    // stripeKey={process.env.REACT_APP_STRIPE_KEY}
                     amount={this.state.total * 100}
                 />
 
