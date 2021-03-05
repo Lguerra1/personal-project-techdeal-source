@@ -9,8 +9,6 @@
     "dotenv": "^6.2.0",
     "express-session": "^1.17.1",
     "massive": "^5.11.2",
-    "passport": "^0.4.1",
-    "passport-google-oauth": "^2.0.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-google-login": "^5.2.2",

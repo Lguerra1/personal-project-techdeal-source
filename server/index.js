@@ -4,9 +4,7 @@ const express = require('express'),
     axios = require('axios'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
-    cors = require(`cors`),
-    passport = require('passport'),
-    GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+    cors = require(`cors`);
 
 const products_controller = require('./controllers/products_controller');
 const cart_controller = require('./controllers/cart_controller');
@@ -19,7 +17,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const {
-    REACT_APP_CLIENT_ID, REACT_APP_DOMAIN, CLIENT_SECRET, SESSION_SECRET, NODE_ENV, CONNECTION_STRING
+    SESSION_SECRET, CONNECTION_STRING
 } = process.env;
 
 massive(CONNECTION_STRING).then(db => {
@@ -29,7 +27,7 @@ massive(CONNECTION_STRING).then(db => {
 });
 
 app.use(session({
-    secret: SESSION_SECRET || "gwrggowarignwrg",
+    secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true
 }));
@@ -46,7 +44,7 @@ app.post('/login', async (req, res) => {
         if (foundUser[0]) {
             console.log('user exists')
             req.session.user = foundUser[0];
-            res.status(200).send({user: foundUser[0]})
+            res.status(200).send({ user: foundUser[0] })
 
         } else {
             await db.query(`INSERT INTO users (username, email) VALUES ('${givenName}', '${email}')`);
