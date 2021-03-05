@@ -4,7 +4,9 @@ const express = require('express'),
     axios = require('axios'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
-    cors = require(`cors`);
+    cors = require(`cors`),
+    passport = require('passport'),
+    GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 
 const products_controller = require('./controllers/products_controller');
 const cart_controller = require('./controllers/cart_controller');
@@ -35,41 +37,24 @@ app.use(session({
 //-------------- Auth0 -----------------//
 
 app.post('/login', async (req, res) => {
-    console.log('test')
-    
+    let { email, givenName } = req.body.userObj;
 
-    // try {
-      
 
-    //     let db = req.app.get('db')
-    //     // let foundUser = await db.query(`SELECT * FROM user where `)find_user([sub])
-    //     if (foundUser[0]) {
-    //         req.session.user = foundUser[0];
+    try {
+        const db = req.app.get('db');
+        let foundUser = await db.query(`SELECT * FROM users WHERE username = '${givenName}'`);
+        if (foundUser[0]) {
+            console.log('user exists')
+            req.session.user = foundUser[0];
+            res.status(200).send({user: foundUser[0]})
 
-    //     } else {
-    //         let createdUser = await db.create_user([name, email, picture, sub])
-    //         req.session.user = createdUser[0];
-    //     }
-    //     await db.find_user_cart(req.session.user.user_id).then(user_cart => {
-    //         if (!user_cart[0]) {
-    //             db.new_order(req.session.user.user_id).then(new_order => {
-    //                 req.session.user.order = new_order[0].id
-    //                 res.redirect('/#/cart');
-
-    //                 console.log(req.session.user)
-    //             })
-
-    //         } else {
-    //             req.session.user.order = user_cart[0].id
-    //             res.redirect('/#/cart');
-    //             console.log(req.session.user)
-    //         }
-    //     })
-
-    // }
-    // catch (error) {
-    //     console.log("error")
-    // }
+        } else {
+            await db.query(`INSERT INTO users (username, email) VALUES ('${givenName}', '${email}')`);
+        }
+    }
+    catch (error) {
+        console.log(error)
+    }
 
 })
 
@@ -111,7 +96,7 @@ app.get(`/api/get_all_audio`, products_controller.readAudio)
 app.get(`/api/get_all_peripherals`, products_controller.readPeripherals)
 
 //--cart endpoints --//
-app.post(`/api/add_to_cart/:productId`, cart_controller.addToCart)
+app.post(`/api/add_to_cart/:productId/:user_id`, cart_controller.addToCart)
 app.delete(`/api/remove_from_cart/:cartId`, cart_controller.removeFromCart)
 app.put(`/api/increase_quantity/:cartId/:quantity`, cart_controller.increaseQuantity)
 app.delete(`/api/decrease_quantity/:cartId/:quantity`, cart_controller.decreaseQuantity)

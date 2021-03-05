@@ -1,22 +1,21 @@
 module.exports = {
 
-    addToCart: (req, res, next) => {
-        console.log(req.params)
+    addToCart: async (req, res, next) => {
         const db = req.app.get('db');
-        const { productId } = req.params
-        const { user_id } = req.session.user
-
-        db.add_to_cart([productId, user_id, 1]).then(() => {
-            db.get_user_cart([user_id]).then(cart => {
-                res.status(200).send(cart)
-            })
-        })
+        const { productId, user_id } = req.params
+        console.log(user_id, productId)
+        try {
+            await db.query(`INSERT INTO carts (product_id, user_id, quantity) VALUES ('${productId}', '${user_id}', 1) returning *`);
+            let cart = await db.query(` select * from carts join products on products.product_id = carts.product_id where user_id = ${user_id};`)
+            return res.status(200).send(cart)
+        } catch (err) {
+            return res.status(400).send(err)
+        }
     },
 
     removeFromCart: (req, res, next) => {
         const db = req.app.get('db');
-        const { cartId } = req.params
-        const { user_id } = req.session.user
+        const { cartId, user_id } = req.params
 
         db.remove_from_cart([user_id, cartId]).then(() => {
             db.get_user_cart([user_id]).then(cart => {

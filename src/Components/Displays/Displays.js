@@ -9,7 +9,8 @@ class Display extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            monitors: []
+            monitors: [],
+            user_id: localStorage.getItem('user_id')
         }
     }
 
@@ -23,7 +24,7 @@ class Display extends Component {
     }
 
     addToCart(productId) {
-        axios.post(`http://localhost:3010/api/add_to_cart/${productId}`).then(res => {
+        axios.post(`http://localhost:3010/api/add_to_cart/${productId}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         })
     }
@@ -46,16 +47,8 @@ class Display extends Component {
             <div>
                 <h1>Displays</h1>
 
-                <div className="grid">
-                    <div className="module">{monitorsToDisplay[0]}</div>
-                    <div className="module">{monitorsToDisplay[1]}</div>
-                    <div className="module">{monitorsToDisplay[2]}</div>
-                    <div className="module">{monitorsToDisplay[3]}</div>
-                    <div className="module">{monitorsToDisplay[4]}</div>
-                    <div className="module">{monitorsToDisplay[5]}</div>
-                    <div className="module">{monitorsToDisplay[6]}</div>
-                    <div className="module">{monitorsToDisplay[7]}</div>
-                    <div className="module">{monitorsToDisplay[8]}</div>
+                <div>
+                    <div>{monitorsToDisplay}</div>
                 </div>
 
 

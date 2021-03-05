@@ -8,7 +8,8 @@ class Peripherals extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            peripherals: []
+            peripherals: [],
+            user_id: localStorage.getItem('user_id')
         }
     }
 
@@ -21,7 +22,7 @@ class Peripherals extends Component {
     }
 
     addToCart(productId) {
-        axios.post(`http://localhost:3010/api/add_to_cart/${productId}`).then(res => {
+        axios.post(`http://localhost:3010/api/add_to_cart/${productId}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         })
     }
@@ -42,16 +43,8 @@ class Peripherals extends Component {
         return (
             <div>
                 <h1>Peripherals</h1>
-                <div className="grid">
-                    <div className="module">{peripheralsToDisplay[0]}</div>
-                    <div className="module">{peripheralsToDisplay[1]}</div>
-                    <div className="module">{peripheralsToDisplay[2]}</div>
-                    <div className="module">{peripheralsToDisplay[3]}</div>
-                    <div className="module">{peripheralsToDisplay[4]}</div>
-                    <div className="module">{peripheralsToDisplay[5]}</div>
-                    <div className="module">{peripheralsToDisplay[6]}</div>
-                    <div className="module">{peripheralsToDisplay[7]}</div>
-                    <div className="module">{peripheralsToDisplay[8]}</div>
+                <div>
+                    <div>{peripheralsToDisplay}</div>
                 </div>
 
             </div>

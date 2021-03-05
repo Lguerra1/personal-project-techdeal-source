@@ -9,7 +9,8 @@ class Parts extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            parts: []
+            parts: [],
+            user_id: localStorage.getItem('user_id')
         }
     }
 
@@ -23,7 +24,7 @@ class Parts extends Component {
     }
 
     addToCart(productId){
-        axios.post(`http://localhost:3010/api/add_to_cart/${productId}`).then(res => {
+        axios.post(`http://localhost:3010/api/add_to_cart/${productId}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         })
     }
@@ -46,17 +47,9 @@ class Parts extends Component {
                 <h1>PC Parts</h1>
 
 
-                <div className="grid">
-                    <div className="module">{partsToDisplay[0]}</div>
-                    <div className="module">{partsToDisplay[1]}</div>
-                    <div className="module">{partsToDisplay[2]}</div>
-                    <div className="module">{partsToDisplay[3]}</div>
-                    <div className="module">{partsToDisplay[4]}</div>
-                    <div className="module">{partsToDisplay[5]}</div>
-                    <div className="module">{partsToDisplay[6]}</div>                              
-                    <div className="module">{partsToDisplay[7]}</div>                              
-                    <div className="module">{partsToDisplay[8]}</div>                              
-                </div>
+                {/* <div className="grid"> */}
+                    <div >{partsToDisplay}</div>           
+                {/* </div> */}
             </div>
         )
     }

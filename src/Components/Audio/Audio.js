@@ -9,7 +9,8 @@ class Audio extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            audio: []
+            audio: [],
+            user_id: localStorage.getItem('user_id')
         }
     }
 
@@ -22,7 +23,7 @@ class Audio extends Component {
     }
 
     addToCart(productId) {
-        axios.post(`http://localhost:3010/api/add_to_cart/${productId}`).then(res => {
+        axios.post(`http://localhost:3010/api/add_to_cart/${productId}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         })
     }
@@ -50,19 +51,11 @@ class Audio extends Component {
             <div>
                 <h1>Audio</h1>
 
-                <div className="grid">
-                    <div className="module">{audioToDisplay[0]}</div>
-                    <div className="module">{audioToDisplay[1]}</div>
-                    <div className="module">{audioToDisplay[2]}</div>
-                    <div className="module">{audioToDisplay[3]}</div>
-                    <div className="module">{audioToDisplay[4]}</div>
-                    <div className="module">{audioToDisplay[5]}</div>
-                    <div className="module">{audioToDisplay[6]}</div>
-                    <div className="module">{audioToDisplay[7]}</div>
-                    <div className="module">{audioToDisplay[8]}</div>                                                 
+                <div>
+                    <div>{audioToDisplay}</div>
                 </div>
 
-            </div>
+            </div >
         )
     }
 }
