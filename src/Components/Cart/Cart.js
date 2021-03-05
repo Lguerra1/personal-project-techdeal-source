@@ -25,9 +25,9 @@ class Cart extends Component {
 
     onToken = (token) => {
         token.card = void 0
-        axios.post(`http://localhost:3010/api/payment`, { token, amount: Math.floor(this.state.total * 100) }).then(res => {
+        axios.post(`${process.env.REACT_APP_BASE_URL}/api/payment`, { token, amount: Math.floor(this.state.total * 100) }).then(res => {
             console.log(res)
-            axios.delete(`http://localhost:3010/api/empty_cart/${this.state.user_id}`).then(() => {
+            axios.delete(`${process.env.REACT_APP_BASE_URL}/api/empty_cart/${this.state.user_id}`).then(() => {
                 this.getCart();
                 this.getTotal();
             })
@@ -43,7 +43,7 @@ class Cart extends Component {
     }
 
     getTotal() {
-        axios.get(`http://localhost:3010/api/get_total/${this.state.user_id}`).then(res => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/api/get_total/${this.state.user_id}`).then(res => {
             this.setState({
                 total: res.data[0].sum
             })
@@ -52,28 +52,28 @@ class Cart extends Component {
     }
 
     getCart() {
-        axios.get(`http://localhost:3010/api/get_cart/${this.state.user_id}`).then(res => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/api/get_cart/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data);
         })
     }
 
 
     removeFromCart(cartId) {
-        axios.delete(`http://localhost:3010/api/remove_from_cart/${cartId}/${this.state.user_id}`).then(res => {
+        axios.delete(`${process.env.REACT_APP_BASE_URL}/api/remove_from_cart/${cartId}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         }).then(this.getTotal()).then(this.getTotal());
     }
 
 
     increaseQuantity(cartId, quantity) {
-        axios.put(`http://localhost:3010/api/increase_quantity/${cartId}/${quantity}/${this.state.user_id}`).then(res => {
+        axios.put(`${process.env.REACT_APP_BASE_URL}/api/increase_quantity/${cartId}/${quantity}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         }).then(this.getTotal())
             .then(this.getTotal())
     }
 
     decreaseQuantity(cartId, quantity) {
-        axios.delete(`http://localhost:3010/api/decrease_quantity/${cartId}/${quantity}/${this.state.user_id}`).then(res => {
+        axios.delete(`${process.env.REACT_APP_BASE_URL}/api/decrease_quantity/${cartId}/${quantity}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         }).then(this.getTotal())
             .then(this.getTotal())

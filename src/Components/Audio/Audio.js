@@ -15,7 +15,7 @@ class Audio extends Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:3010/api/get_all_audio`).then(res => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/api/get_all_audio`).then(res => {
             this.setState({
                 audio: res.data
             })
@@ -23,7 +23,7 @@ class Audio extends Component {
     }
 
     addToCart(productId) {
-        axios.post(`http://localhost:3010/api/add_to_cart/${productId}/${this.state.user_id}`).then(res => {
+        axios.post(`${process.env.REACT_APP_BASE_URL}/api/add_to_cart/${productId}/${this.state.user_id}`).then(res => {
             this.props.updateCart(res.data)
         })
     }

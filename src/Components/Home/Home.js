@@ -15,7 +15,7 @@ export default class Home extends Component {
 
 
     componentDidMount() {
-        axios.get('http://localhost:3010/api/get_all_products').then(res => {
+        axios.get(`${process.env.REACT_APP_BASE_URL}/api/get_all_products`).then(res => {
             this.setState({
                 products: res.data
             })

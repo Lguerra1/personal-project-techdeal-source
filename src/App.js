@@ -11,7 +11,7 @@ const App = () => {
 
 
   const responseGoogle = (response) => {
-     Axios.post('http://localhost:3010/login',{userObj: response.profileObj}).then(data => {
+     Axios.post(`${process.env.REACT_APP_BASE_URL}/login`,{userObj: response.profileObj}).then(data => {
       localStorage.setItem("user_id", data.data.user.user_id);
     })
 }

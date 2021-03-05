@@ -1,7 +1,6 @@
 require(`dotenv`).config({ path: '../.env' });
 const express = require('express'),
     massive = require('massive'),
-    axios = require('axios'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
     cors = require(`cors`);
